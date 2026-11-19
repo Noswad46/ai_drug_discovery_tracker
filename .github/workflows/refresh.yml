@@ -1,0 +1,99 @@
+name: Refresh tracker
+
+# Weekly on Monday morning (UTC). For a monthly refresh instead, replace the
+# cron with "17 6 1 * *" — first day of the month.
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      skip_sponsors:
+        description: "Skip the sponsor sweep (faster, no new review candidates)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write # commit the new snapshot
+  issues: write # open the manual-review issue
+  pages: write # publish the site
+  id-token: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # No dependencies: the scripts are standard library only.
+      - name: Self-test
+        run: python scripts/selftest.py
+
+      - name: Refresh from ClinicalTrials.gov
+        run: |
+          python scripts/refresh.py ${{ inputs.skip_sponsors && '--skip-sponsors' || '' }}
+
+      - name: Rebuild the dashboard payload
+        run: python scripts/build.py
+
+      - name: Write the job summary
+        run: python scripts/report.py >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit the snapshot
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data site/data
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Nothing changed."
+          else
+            git commit -m "Refresh $(date -u +%Y-%m-%d) from ClinicalTrials.gov"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Possible new AI-designed drugs are never added automatically: they are
+      # raised as an issue for a human to check against criteria.md.
+      - name: Open a manual-review issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python scripts/report.py --new-only > /tmp/review.md
+          if [ -s /tmp/review.md ]; then
+            gh issue create \
+              --title "Review: possible new AI-designed drugs ($(date -u +%Y-%m-%d))" \
+              --body-file /tmp/review.md \
+              --label "review" || gh issue create \
+              --title "Review: possible new AI-designed drugs ($(date -u +%Y-%m-%d))" \
+              --body-file /tmp/review.md
+          else
+            echo "No new candidates this refresh."
+          fi
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: refresh
+    runs-on: ubuntu-latest
+    # Shared with publish.yml so two deploys never race.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

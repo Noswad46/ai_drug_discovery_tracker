@@ -1,0 +1,8 @@
+{
+  "_note": "Hand curation that the automatic matcher cannot infer. Keyed by the drug key (slug of drug_name). 'discovery': 'off' stops the intervention search for molecules whose INN is a widely used medicine and would otherwise drag in unrelated trials; 'nct_include' pins trials; 'nct_exclude' drops a wrong match.",
+  "baricitinib-covid-19": {
+    "discovery": "off",
+    "reason": "Baricitinib has hundreds of Lilly trials in RA, alopecia and JIA. Only the COVID-19 trials belong to the AI-repurposing claim.",
+    "nct_include": ["NCT04421027", "NCT04401579", "NCT04640168"]
+  }
+}

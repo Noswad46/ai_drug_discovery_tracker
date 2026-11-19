@@ -1,0 +1,3 @@
+{
+  "_note": "Manual verdicts on items from data/review-queue.json, so a rejected trial stops coming back every week. Add an entry per NCT ID: {\"decision\": \"accepted\" | \"rejected\", \"note\": \"why\", \"date\": \"YYYY-MM-DD\"}. 'accepted' means you also added a row to seed-list.csv."
+}

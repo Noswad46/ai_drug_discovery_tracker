@@ -1,0 +1,49 @@
+{
+  "_note": "Hand-entered reference rates. Nothing here is computed from the tracker; edit the values and keep the citations honest.",
+  "phase_success": [
+    {
+      "stage": "Phase 1",
+      "label": "Phase 1 → Phase 2",
+      "industry": 0.52,
+      "ai": 0.85,
+      "ai_range": [0.8, 0.9]
+    },
+    {
+      "stage": "Phase 2",
+      "label": "Phase 2 → Phase 3",
+      "industry": 0.289,
+      "ai": 0.4,
+      "ai_range": [0.35, 0.45]
+    },
+    {
+      "stage": "Phase 3",
+      "label": "Phase 3 → filing",
+      "industry": 0.578,
+      "ai": null,
+      "ai_range": null
+    },
+    {
+      "stage": "Filed",
+      "label": "Filing → approval",
+      "industry": 0.906,
+      "ai": null,
+      "ai_range": null
+    }
+  ],
+  "sources": {
+    "industry": {
+      "label": "Industry baseline (2011-2020)",
+      "citation": "BIO, Informa Pharma Intelligence and QLS Advisors, Clinical Development Success Rates 2011-2020. Phase 1 52.0%, Phase 2 28.9%, Phase 3 57.8%, filing 90.6%.",
+      "url": "https://go.bio.org/rs/490-EHZ-999/images/ClinicalDevelopmentSuccessRates2011_2020.pdf"
+    },
+    "ai": {
+      "label": "AI-discovered molecules (BCG/Wellcome 2024)",
+      "citation": "Jayatunga et al., 'How successful are AI-discovered drugs in clinical trials? A first analysis and emerging lessons', Drug Discovery Today 2024. Phase 1 success 80-90% (n=24); Phase 2 success around 40% (n=10), in line with historical industry averages. Small sample - treat as indicative.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38692505/"
+    }
+  },
+  "caveats": [
+    "Benchmark rates are per-phase transition rates for completed programmes. The funnel on this page is a snapshot of a young cohort: most drugs in it have not had the chance to progress or fail yet, so the funnel's stage-to-stage ratios are not success rates.",
+    "The 'outcome known' rates on this page use only drugs whose programme has resolved at a phase - progressed beyond it, or stopped at it. Denominators are small; they are shown next to every rate."
+  ]
+}

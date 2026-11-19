@@ -1,0 +1,773 @@
+{
+  "generated": "2026-11-18",
+  "note": "Trials from tracked sponsors that are not linked to a drug in seed-list.csv. Nothing here is counted in the dashboard totals. Review each one against criteria.md, then either add a row to seed-list.csv or record a decision in data/review-decisions.json.",
+  "candidates": [
+    {
+      "nct_id": "NCT07932041",
+      "title": "A Phase 1, Evaluate the Safety, Tolerability, Pharmacokinetics, and Pharmacodynamics of ISM9528",
+      "lead_sponsor": "InSilico Medicine Hong Kong Limited",
+      "matched_sponsor": "Insilico Medicine",
+      "phase": "Phase 1",
+      "overall_status": "RECRUITING",
+      "start_date": "2026-10-29",
+      "conditions": [
+        "Healthy Subjects (HS)"
+      ],
+      "interventions": [
+        "ISM9528 capsules"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT07932041",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT07687875",
+      "title": "Oncolytic Virotherapy to Enhance PReoperative IMmunotherapy Efficacy in Patients With Proficient Mismatch Repair (pMMR) Rectal Cancer",
+      "lead_sponsor": "Henry Smith",
+      "matched_sponsor": "Transgene",
+      "phase": "Phase 1",
+      "overall_status": "RECRUITING",
+      "start_date": "2026-10-23",
+      "conditions": [
+        "Rectal Cancer Patients"
+      ],
+      "interventions": [
+        "BT-001 followed by Pembrolizumab (PD-1 Blocking Antibody)"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT07687875",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT07725380",
+      "title": "Domatinostat With Sirolimus for Relapsed, Refractory Sarcoma and Osteosarcoma",
+      "lead_sponsor": "H. Lee Moffitt Cancer Center and Research Institute",
+      "matched_sponsor": "Healx",
+      "phase": "Phase 1/2",
+      "overall_status": "RECRUITING",
+      "start_date": "2026-07-15",
+      "conditions": [
+        "Sarcoma",
+        "Osteosarcoma"
+      ],
+      "interventions": [
+        "Domatinostat",
+        "Sirolimus"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT07725380",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT07260877",
+      "title": "A Multicenter, Randomized, Double-Blind, Placebo-Controlled, Phase 2a Study With an Open-Label Extension Evaluating the Efficacy and Safety of VENT-03 in Adult Participants With Active Cutaneous Lupus Erythematosus With or Without Systemic Lupus Erythematosus",
+      "lead_sponsor": "Ventus Therapeutics U.S., Inc.",
+      "matched_sponsor": "Ventus Therapeutics",
+      "phase": "Phase 2",
+      "overall_status": "ACTIVE_NOT_RECRUITING",
+      "start_date": "2025-12-03",
+      "conditions": [
+        "Cutaneous Lupus Erythematosus (CLE)",
+        "Systemic Lupus Erythematosus",
+        "SLE",
+        "SLE (Systemic Lupus)"
+      ],
+      "interventions": [
+        "VENT-03",
+        "Placebo"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT07260877",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT07108894",
+      "title": "A First-in-Human Phase 1 Single-Ascending Dose Study of ABCL575 in Healthy Participants",
+      "lead_sponsor": "AbCellera Biologics Inc.",
+      "matched_sponsor": "AbCellera",
+      "phase": "Phase 1",
+      "overall_status": "ACTIVE_NOT_RECRUITING",
+      "start_date": "2025-07-25",
+      "conditions": [
+        "Healthy Volunteers"
+      ],
+      "interventions": [
+        "ABCL575",
+        "Placebo (Normal Saline 0.9%)"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT07108894",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT06308575",
+      "title": "A Phase II Study of Rivoceranib for Patients With Recurrent or Metastatic Olfactory Neuroblastoma",
+      "lead_sponsor": "M.D. Anderson Cancer Center",
+      "matched_sponsor": "Elevar Therapeutics",
+      "phase": "Phase 2",
+      "overall_status": "WITHDRAWN",
+      "start_date": "2024-11-01",
+      "conditions": [
+        "Metastatic Olfactory Neuroblastoma",
+        "Recurrent Olfactory Neuroblastoma"
+      ],
+      "interventions": [
+        "Rivoceranib"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT06308575",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT05983523",
+      "title": "A Study of PEP07 (Checkpoint Kinase 1 Inhibitor) in Patients with Advanced or Metastatic Solid Tumors",
+      "lead_sponsor": "PharmaEngine",
+      "matched_sponsor": "PharmaEngine",
+      "phase": "Phase 1",
+      "overall_status": "RECRUITING",
+      "start_date": "2024-03-27",
+      "conditions": [
+        "Advanced Solid Tumor",
+        "Metastatic Solid Tumor"
+      ],
+      "interventions": [
+        "PEP07"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT05983523",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT06334419",
+      "title": "Placebo-Controlled, Single-Dose Challenge Study of Gaboxadol in Adult Males With Fragile X Syndrome (FXS)",
+      "lead_sponsor": "Craig Erickson",
+      "matched_sponsor": "Healx",
+      "phase": "Phase 2",
+      "overall_status": "COMPLETED",
+      "start_date": "2024-01-29",
+      "conditions": [
+        "Fragile X Syndrome"
+      ],
+      "interventions": [
+        "Gaboxadol",
+        "Placebo"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT06334419",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT05558982",
+      "title": "BXCL701 and Pembrolizumab in Patients With Metastatic Pancreatic Ductal Adenocarcinoma",
+      "lead_sponsor": "Georgetown University",
+      "matched_sponsor": "BioXcel Therapeutics",
+      "phase": "Phase 2",
+      "overall_status": "ACTIVE_NOT_RECRUITING",
+      "start_date": "2023-08-16",
+      "conditions": [
+        "Metastatic Pancreatic Ductal Adenocarcinoma"
+      ],
+      "interventions": [
+        "BXCL701",
+        "Pembrolizumab",
+        "Keytruda"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT05558982",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT05659732",
+      "title": "A Study of PEP07 (Checkpoint Kinase 1 Inhibitor) in Patients With Advanced Cancer",
+      "lead_sponsor": "PharmaEngine",
+      "matched_sponsor": "PharmaEngine",
+      "phase": "Phase 1",
+      "overall_status": "RECRUITING",
+      "start_date": "2023-07-17",
+      "conditions": [
+        "Acute Myeloid Leukemia",
+        "Lymphoma, Mantle-Cell"
+      ],
+      "interventions": [
+        "PEP07"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT05659732",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT05788926",
+      "title": "A Clinical Trial of TG6050 in Patients With Metastatic Non-Small Cell Lung Cancer (Delivir)",
+      "lead_sponsor": "Transgene",
+      "matched_sponsor": "Transgene",
+      "phase": "Phase 1",
+      "overall_status": "TERMINATED",
+      "start_date": "2023-04-05",
+      "conditions": [
+        "Non-small Cell Lung Cancer"
+      ],
+      "interventions": [
+        "TG6050"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT05788926",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT05759949",
+      "title": "First-in-Human Study of RLY-5836 in Advanced Breast Cancer and Other Solid Tumors",
+      "lead_sponsor": "Relay Therapeutics, Inc.",
+      "matched_sponsor": "Relay Therapeutics",
+      "phase": "Phase 1",
+      "overall_status": "COMPLETED",
+      "start_date": "2023-03-29",
+      "conditions": [
+        "PIK3CA Mutation",
+        "Solid Tumor, Adult",
+        "HER2-negative Breast Cancer",
+        "Breast Cancer"
+      ],
+      "interventions": [
+        "RLY-5836",
+        "Fulvestrant",
+        "Faslodex",
+        "Palbociclib"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT05759949",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT05668741",
+      "title": "A Phase 1/2 Study of VX-522 in Participants With Cystic Fibrosis (CF)",
+      "lead_sponsor": "Vertex Pharmaceuticals Incorporated",
+      "matched_sponsor": "Moderna",
+      "phase": "Phase 1/2",
+      "overall_status": "COMPLETED",
+      "start_date": "2023-02-27",
+      "conditions": [
+        "Cystic Fibrosis"
+      ],
+      "interventions": [
+        "VX-522 mRNA therapy",
+        "IVA",
+        "ivacaftor",
+        "VX-770"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT05668741",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT06132503",
+      "title": "Safety, Pharmacokinetics, and Clinical Activity of LP-284 in Adult Patients With Relapsed or Refractory Lymphomas and Solid Tumors",
+      "lead_sponsor": "Lantern Pharma Inc.",
+      "matched_sponsor": "Lantern Pharma",
+      "phase": "Phase 1",
+      "overall_status": "RECRUITING",
+      "start_date": "2023-01-03",
+      "conditions": [
+        "Relapsed or Refractory Lymphomas",
+        "Advanced Solid Tumor"
+      ],
+      "interventions": [
+        "LP-284"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT06132503",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT04725331",
+      "title": "A Clinical Trial Assessing BT-001 Alone and in Combination With Pembrolizumab in Metastatic or Advanced Solid Tumors",
+      "lead_sponsor": "Transgene",
+      "matched_sponsor": "Transgene",
+      "phase": "Phase 1/2",
+      "overall_status": "TERMINATED",
+      "start_date": "2021-02-25",
+      "conditions": [
+        "Metastatic Cancer",
+        "Soft Tissue Sarcoma",
+        "Merkel Cell Carcinoma",
+        "Melanoma"
+      ],
+      "interventions": [
+        "BT-001",
+        "Pembrolizumab [KEYTRUDA®]",
+        "KEYTRUDA®"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT04725331",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT04455503",
+      "title": "Study of Adjuvant Immunotherapy With EVX-02 and Anti-PD-1",
+      "lead_sponsor": "Evaxion Biotech A/S",
+      "matched_sponsor": "Evaxion Biotech",
+      "phase": "Phase 1/2",
+      "overall_status": "TERMINATED",
+      "start_date": "2020-07-13",
+      "conditions": [
+        "Melanoma Stage IV",
+        "Melanoma Stage III"
+      ],
+      "interventions": [
+        "EVX-02A",
+        "A",
+        "EVX-02B",
+        "B"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT04455503",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT04427501",
+      "title": "A Study of LY3819253 (LY-CoV555) and LY3832479 (LY-CoV016) in Participants With Mild to Moderate COVID-19 Illness",
+      "lead_sponsor": "Eli Lilly and Company",
+      "matched_sponsor": "AbCellera",
+      "phase": "Phase 2/3",
+      "overall_status": "COMPLETED",
+      "start_date": "2020-06-17",
+      "conditions": [
+        "COVID-19"
+      ],
+      "interventions": [
+        "LY3819253",
+        "LY-CoV555",
+        "Bamlanivimab",
+        "LY3832479"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT04427501",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT04119453",
+      "title": "A Study to Evaluate the Efficacy and Safety of Rivoceranib in Participants With Recurrent or Metastatic Adenoid Cystic Carcinoma (ACC)",
+      "lead_sponsor": "Elevar Therapeutics",
+      "matched_sponsor": "Elevar Therapeutics",
+      "phase": "Phase 2",
+      "overall_status": "TERMINATED",
+      "start_date": "2020-01-22",
+      "conditions": [
+        "Adenoid Cystic Carcinoma"
+      ],
+      "interventions": [
+        "Rivoceranib",
+        "Apatinib, Apatinib Mesylate"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT04119453",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT04073615",
+      "title": "A Study of Rivoceranib and Trifluridine/Tipiracil for Metastatic Colorectal Cancer (mCRC)",
+      "lead_sponsor": "Elevar Therapeutics",
+      "matched_sponsor": "Elevar Therapeutics",
+      "phase": "Phase 1",
+      "overall_status": "TERMINATED",
+      "start_date": "2019-11-18",
+      "conditions": [
+        "Metastatic Colorectal Cancer"
+      ],
+      "interventions": [
+        "Rivoceranib",
+        "Rivoceranib Mesylate",
+        "Apatinib Mesylate",
+        "Apatinib"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT04073615",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT04123574",
+      "title": "A Pilot Study of BXCL701 in Patients With Pancreatic Cancer",
+      "lead_sponsor": "BioXcel Therapeutics Inc",
+      "matched_sponsor": "BioXcel Therapeutics",
+      "phase": "Phase 1",
+      "overall_status": "WITHDRAWN",
+      "start_date": "2019-10-15",
+      "conditions": [
+        "Cancer of Pancreas",
+        "Cancer of the Pancreas",
+        "Neoplasms, Pancreatic",
+        "Pancreas Cancer"
+      ],
+      "interventions": [
+        "Talabostat Mesylate",
+        "BXCL701"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT04123574",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT03910660",
+      "title": "A Trial of Talabostat (BXCL701) and Pembrolizumab in Participants With Metastatic Castrate-Resistant Prostate Cancer (mCRPC) Either Small Cell Neuroendocrine Prostate Cancer or Adenocarcinoma Phenotype",
+      "lead_sponsor": "BioXcel Therapeutics Inc",
+      "matched_sponsor": "BioXcel Therapeutics",
+      "phase": "Phase 1/2",
+      "overall_status": "COMPLETED",
+      "start_date": "2019-06-10",
+      "conditions": [
+        "Prostate Cancer",
+        "Neuroendocrine Tumors",
+        "Small Cell Carcinoma"
+      ],
+      "interventions": [
+        "Talabostat",
+        "BXCL701",
+        "Pembrolizumab"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT03910660",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT03810742",
+      "title": "Nanoliposomal Irinotecan (Nal-IRI, ONIVYDE®) in Combination With TAS-102 (LONSURF®) in Refractory Solid Tumors",
+      "lead_sponsor": "PharmaEngine",
+      "matched_sponsor": "PharmaEngine",
+      "phase": "Phase 1",
+      "overall_status": "COMPLETED",
+      "start_date": "2019-03-05",
+      "conditions": [
+        "Refractory Solid Tumors"
+      ],
+      "interventions": [
+        "Nanoliposomal Irinotecan",
+        "TAS-102"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT03810742",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT03882918",
+      "title": "An Open-Label Study to Evaluate the Long-Term Safety, Tolerability, and Efficacy of OV101 in Individuals With Angelman Syndrome",
+      "lead_sponsor": "Healx AI",
+      "matched_sponsor": "Healx",
+      "phase": "Phase 3",
+      "overall_status": "TERMINATED",
+      "start_date": "2019-01-31",
+      "conditions": [
+        "Angelman Syndrome"
+      ],
+      "interventions": [
+        "OV101",
+        "gaboxadol"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT03882918",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT03643107",
+      "title": "Irofulven in AR-targeted and Docetaxel-Pretreated mCRPC Patients With Drug Response Predictor (DRP®)",
+      "lead_sponsor": "Allarity Therapeutics",
+      "matched_sponsor": "Lantern Pharma",
+      "phase": "Phase 2",
+      "overall_status": "COMPLETED",
+      "start_date": "2018-10-17",
+      "conditions": [
+        "Metastatic Castration-Resistant Prostate Cancer Patients"
+      ],
+      "interventions": [
+        "Irofulven",
+        "Prednisolone 10 mg"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT03643107",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT03694275",
+      "title": "A Multicenter, Open-label, Pilot Study of Soticlestat (TAK-935/OV935) in Participants With 15Q Duplication Syndrome (Dup 15q) or Cyclin-Dependent Kinase-Like 5 (CDKL5) Deficiency Disorder (ARCADE STUDY)",
+      "lead_sponsor": "Takeda",
+      "matched_sponsor": "Healx",
+      "phase": "Phase 2",
+      "overall_status": "COMPLETED",
+      "start_date": "2018-09-10",
+      "conditions": [
+        "15q Duplication Syndrome",
+        "CDKL5 Deficiency Disease"
+      ],
+      "interventions": [
+        "Soticlestat",
+        "TAK-935"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT03694275",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT03650452",
+      "title": "A Phase 2, Multicenter, Randomized, Double-blind, Placebo-controlled Study to Evaluate the Efficacy, Safety, and Tolerability of TAK-935 (OV935) as an Adjunctive Therapy in Pediatric Participants With Developmental and/or Epileptic Encephalopathies",
+      "lead_sponsor": "Takeda",
+      "matched_sponsor": "Healx",
+      "phase": "Phase 2",
+      "overall_status": "COMPLETED",
+      "start_date": "2018-08-08",
+      "conditions": [
+        "Epilepsy",
+        "Dravet Syndrome",
+        "Lennox-Gastaut Syndrome"
+      ],
+      "interventions": [
+        "TAK-935",
+        "Placebo"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT03650452",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT03194217",
+      "title": "BEN-2001 in Parkinson Disease Patients With Excessive Daytime Sleepiness",
+      "lead_sponsor": "BenevolentAI Bio",
+      "matched_sponsor": "BenevolentAI",
+      "phase": "Phase 2",
+      "overall_status": "COMPLETED",
+      "start_date": "2017-11-10",
+      "conditions": [
+        "Excessive Daytime Sleepiness",
+        "Parkinson Disease"
+      ],
+      "interventions": [
+        "BEN-2001",
+        "Bavisant",
+        "Placebo"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT03194217",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT03260023",
+      "title": "Phase Ib/II of TG4001 and Avelumab in HPV16 Positive R/M Cancers",
+      "lead_sponsor": "Transgene",
+      "matched_sponsor": "Transgene",
+      "phase": "Phase 1/2",
+      "overall_status": "ACTIVE_NOT_RECRUITING",
+      "start_date": "2017-09-01",
+      "conditions": [
+        "HPV-Related Carcinoma",
+        "HPV-Related Cervical Carcinoma",
+        "HPV-Related Anal Squamous Cell Carcinoma",
+        "HPV-Related Penile Squamous Cell Carcinoma"
+      ],
+      "interventions": [
+        "TG4001",
+        "Avelumab"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT03260023",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT03166215",
+      "title": "Study of TAK-935 as an Adjunctive Therapy in Participants With Developmental and/or Epileptic Encephalopathies",
+      "lead_sponsor": "Takeda",
+      "matched_sponsor": "Healx",
+      "phase": "Phase 1/2",
+      "overall_status": "COMPLETED",
+      "start_date": "2017-08-17",
+      "conditions": [
+        "Developmental and/or Epileptic Encephalopathies"
+      ],
+      "interventions": [
+        "TAK-935",
+        "Placebo"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT03166215",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT02823990",
+      "title": "TG4010 and Nivolumab in Patients With Lung Cancer",
+      "lead_sponsor": "Megan Daly, MD",
+      "matched_sponsor": "Transgene",
+      "phase": "Phase 2",
+      "overall_status": "COMPLETED",
+      "start_date": "2016-12-14",
+      "conditions": [
+        "Recurrent Non-Small Cell Lung Carcinoma",
+        "Stage I Non-Small Cell Lung Cancer",
+        "Stage II Non-Small Cell Lung Cancer",
+        "Stage IIIA Non-Small Cell Lung Cancer"
+      ],
+      "interventions": [
+        "TG4010",
+        "Modified Vaccinia Ankara Encoding Human MUC-1 Antigen and Interleukin-2 Suspension",
+        "MVA-MUC1-IL2",
+        "MVA-MUC1-IL2 Vaccine"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT02823990",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT02996305",
+      "title": "A Study in Adults and Adolescents With Angelman Syndrome (STARS)",
+      "lead_sponsor": "Healx AI",
+      "matched_sponsor": "Healx",
+      "phase": "Phase 2",
+      "overall_status": "COMPLETED",
+      "start_date": "2016-01",
+      "conditions": [
+        "Angelman Syndrome"
+      ],
+      "interventions": [
+        "OV101 Regimen 1",
+        "Gaboxadol",
+        "OV101 regimen 2",
+        "Gaboxadol"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT02996305",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT01957735",
+      "title": "BP31510 (Ubidecarenone,USP) Nanosuspension for Intravenous Injection to Patients With Solid Tumors",
+      "lead_sponsor": "BPGbio",
+      "matched_sponsor": "BPGbio",
+      "phase": "Phase 1",
+      "overall_status": "COMPLETED",
+      "start_date": "2013-10",
+      "conditions": [
+        "Metastatic Cancer",
+        "Cancer",
+        "Solid Tumor"
+      ],
+      "interventions": [
+        "BP31510 monotherapy",
+        "BP31510 in combination with chemotherapy"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT01957735",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT01588522",
+      "title": "Compound 31543 (Calcitriol, USP) in Patients Receiving Taxane-based Chemotherapy Regimens for the Treatment of Chemotherapy-Induced Alopecia",
+      "lead_sponsor": "BPGbio",
+      "matched_sponsor": "BPGbio",
+      "phase": "Phase 1",
+      "overall_status": "COMPLETED",
+      "start_date": "2012-09-17",
+      "conditions": [
+        "Chemotherapy-Induced Alopecia"
+      ],
+      "interventions": [
+        "Compound 31543 Calcitriol 5 μg/mL",
+        "Calcitriol",
+        "BPM31543 Topical Solution",
+        "Compound 31543 Calcitriol 10 μg/mL"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT01588522",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT01394939",
+      "title": "Recombinant Vaccinia Virus Administered Intravenously in Patients With Metastatic, Refractory Colorectal Carcinoma",
+      "lead_sponsor": "Jennerex Biotherapeutics",
+      "matched_sponsor": "Transgene",
+      "phase": "Phase 1/2",
+      "overall_status": "COMPLETED",
+      "start_date": "2012-01",
+      "conditions": [
+        "Colorectal Carcinoma",
+        "CRC"
+      ],
+      "interventions": [
+        "JX-594",
+        "Pexa-Vec",
+        "Irinotecan"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT01394939",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT01251562",
+      "title": "Safety Study of Sterile Compound C31510 for Injection to Subjects With Solid Tumors",
+      "lead_sponsor": "BPGbio",
+      "matched_sponsor": "BPGbio",
+      "phase": "Phase 1",
+      "overall_status": "COMPLETED",
+      "start_date": "2011-01",
+      "conditions": [
+        "Solid Tumors"
+      ],
+      "interventions": [
+        "Sterile Compound C31510 for Injection"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT01251562",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    },
+    {
+      "nct_id": "NCT00604890",
+      "title": "Dose-Ranging Clinical Trial of Topical Creams Containing API 31510 for the Treatment of Superficial Basal Cell Carcinoma",
+      "lead_sponsor": "BPGbio",
+      "matched_sponsor": "BPGbio",
+      "phase": "Phase 1/2",
+      "overall_status": "COMPLETED",
+      "start_date": "2008-03",
+      "conditions": [
+        "Superficial Basal Cell Carcinoma"
+      ],
+      "interventions": [
+        "API 31510 3% Topical Cream",
+        "API 31510 1.5% Topical Cream",
+        "Placebo"
+      ],
+      "url": "https://clinicaltrials.gov/study/NCT00604890",
+      "first_seen": "2026-11-18",
+      "review_status": "pending",
+      "last_seen": "2026-11-18"
+    }
+  ]
+}
