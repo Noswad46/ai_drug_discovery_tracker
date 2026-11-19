@@ -1,6 +1,6 @@
 {
-  "snapshot_date": "2026-11-18",
-  "generated_at_utc": "2026-11-19T04:20:52+00:00",
+  "snapshot_date": "2026-11-19",
+  "generated_at_utc": "2026-11-19T04:34:40+00:00",
   "source": {
     "api": "ClinicalTrials.gov API v2",
     "endpoint": "https://clinicaltrials.gov/api/v2/studies"
@@ -8,7 +8,7 @@
   "seed_file": "seed-list.csv",
   "seed_sha256": "a94602f84ba478c5",
   "mode": "live",
-  "api_calls": 140,
+  "api_calls": 139,
   "sponsors_swept": [
     "AbCellera",
     "Absci",
@@ -10474,7 +10474,7 @@
         "ISM9528 capsules"
       ],
       "url": "https://clinicaltrials.gov/study/NCT07932041",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10492,7 +10492,7 @@
         "BT-001 followed by Pembrolizumab (PD-1 Blocking Antibody)"
       ],
       "url": "https://clinicaltrials.gov/study/NCT07687875",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10512,7 +10512,7 @@
         "Sirolimus"
       ],
       "url": "https://clinicaltrials.gov/study/NCT07725380",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10534,7 +10534,7 @@
         "Placebo"
       ],
       "url": "https://clinicaltrials.gov/study/NCT07260877",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10553,7 +10553,7 @@
         "Placebo (Normal Saline 0.9%)"
       ],
       "url": "https://clinicaltrials.gov/study/NCT07108894",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10572,7 +10572,7 @@
         "Rivoceranib"
       ],
       "url": "https://clinicaltrials.gov/study/NCT06308575",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10591,7 +10591,7 @@
         "PEP07"
       ],
       "url": "https://clinicaltrials.gov/study/NCT05983523",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10610,7 +10610,7 @@
         "Placebo"
       ],
       "url": "https://clinicaltrials.gov/study/NCT06334419",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10630,7 +10630,7 @@
         "Keytruda"
       ],
       "url": "https://clinicaltrials.gov/study/NCT05558982",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10649,7 +10649,7 @@
         "PEP07"
       ],
       "url": "https://clinicaltrials.gov/study/NCT05659732",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10667,7 +10667,7 @@
         "TG6050"
       ],
       "url": "https://clinicaltrials.gov/study/NCT05788926",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10691,7 +10691,7 @@
         "Palbociclib"
       ],
       "url": "https://clinicaltrials.gov/study/NCT05759949",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10712,7 +10712,7 @@
         "VX-770"
       ],
       "url": "https://clinicaltrials.gov/study/NCT05668741",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10731,7 +10731,7 @@
         "LP-284"
       ],
       "url": "https://clinicaltrials.gov/study/NCT06132503",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10754,7 +10754,7 @@
         "KEYTRUDA®"
       ],
       "url": "https://clinicaltrials.gov/study/NCT04725331",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10776,7 +10776,7 @@
         "B"
       ],
       "url": "https://clinicaltrials.gov/study/NCT04455503",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10797,7 +10797,7 @@
         "LY3832479"
       ],
       "url": "https://clinicaltrials.gov/study/NCT04427501",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10816,7 +10816,7 @@
         "Apatinib, Apatinib Mesylate"
       ],
       "url": "https://clinicaltrials.gov/study/NCT04119453",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10837,7 +10837,7 @@
         "Apatinib"
       ],
       "url": "https://clinicaltrials.gov/study/NCT04073615",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10859,7 +10859,7 @@
         "BXCL701"
       ],
       "url": "https://clinicaltrials.gov/study/NCT04123574",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10881,26 +10881,7 @@
         "Pembrolizumab"
       ],
       "url": "https://clinicaltrials.gov/study/NCT03910660",
-      "first_seen": "2026-11-18",
-      "review_status": "pending"
-    },
-    {
-      "nct_id": "NCT03810742",
-      "title": "Nanoliposomal Irinotecan (Nal-IRI, ONIVYDE®) in Combination With TAS-102 (LONSURF®) in Refractory Solid Tumors",
-      "lead_sponsor": "PharmaEngine",
-      "matched_sponsor": "PharmaEngine",
-      "phase": "Phase 1",
-      "overall_status": "COMPLETED",
-      "start_date": "2019-03-05",
-      "conditions": [
-        "Refractory Solid Tumors"
-      ],
-      "interventions": [
-        "Nanoliposomal Irinotecan",
-        "TAS-102"
-      ],
-      "url": "https://clinicaltrials.gov/study/NCT03810742",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10919,7 +10900,7 @@
         "gaboxadol"
       ],
       "url": "https://clinicaltrials.gov/study/NCT03882918",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10938,7 +10919,7 @@
         "Prednisolone 10 mg"
       ],
       "url": "https://clinicaltrials.gov/study/NCT03643107",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10958,7 +10939,7 @@
         "TAK-935"
       ],
       "url": "https://clinicaltrials.gov/study/NCT03694275",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -10979,7 +10960,7 @@
         "Placebo"
       ],
       "url": "https://clinicaltrials.gov/study/NCT03650452",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -11000,7 +10981,7 @@
         "Placebo"
       ],
       "url": "https://clinicaltrials.gov/study/NCT03194217",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -11022,7 +11003,7 @@
         "Avelumab"
       ],
       "url": "https://clinicaltrials.gov/study/NCT03260023",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -11041,7 +11022,7 @@
         "Placebo"
       ],
       "url": "https://clinicaltrials.gov/study/NCT03166215",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -11065,7 +11046,7 @@
         "MVA-MUC1-IL2 Vaccine"
       ],
       "url": "https://clinicaltrials.gov/study/NCT02823990",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -11086,7 +11067,7 @@
         "Gaboxadol"
       ],
       "url": "https://clinicaltrials.gov/study/NCT02996305",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -11107,7 +11088,7 @@
         "BP31510 in combination with chemotherapy"
       ],
       "url": "https://clinicaltrials.gov/study/NCT01957735",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -11128,7 +11109,7 @@
         "Compound 31543 Calcitriol 10 μg/mL"
       ],
       "url": "https://clinicaltrials.gov/study/NCT01588522",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -11149,7 +11130,7 @@
         "Irinotecan"
       ],
       "url": "https://clinicaltrials.gov/study/NCT01394939",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -11167,7 +11148,7 @@
         "Sterile Compound C31510 for Injection"
       ],
       "url": "https://clinicaltrials.gov/study/NCT01251562",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     },
     {
@@ -11187,7 +11168,7 @@
         "Placebo"
       ],
       "url": "https://clinicaltrials.gov/study/NCT00604890",
-      "first_seen": "2026-11-18",
+      "first_seen": "2026-11-19",
       "review_status": "pending"
     }
   ],
@@ -11195,10 +11176,10 @@
     "drugs": 67,
     "trials": 163,
     "drugs_with_trials": 58,
-    "candidates_pending": 36
+    "candidates_pending": 35
   },
   "changes_since_previous": {
-    "previous_snapshot": null,
+    "previous_snapshot": "2026-11-18",
     "count": 0,
     "changes": []
   }

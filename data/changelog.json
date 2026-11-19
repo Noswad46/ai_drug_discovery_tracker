@@ -1,5 +1,20 @@
 [
   {
+    "date": "2026-11-19",
+    "generated_at_utc": "2026-11-19T04:34:40+00:00",
+    "previous_snapshot": "2026-11-18",
+    "mode": "live",
+    "totals": {
+      "drugs": 67,
+      "trials": 163,
+      "drugs_with_trials": 58,
+      "candidates_pending": 35
+    },
+    "change_count": 0,
+    "changes": [],
+    "warnings": []
+  },
+  {
     "date": "2026-11-18",
     "generated_at_utc": "2026-11-19T04:20:52+00:00",
     "previous_snapshot": null,
