@@ -30,6 +30,17 @@
     discontinued: "Discontinued",
     unclear: "Unclear"
   };
+  // The core claim of every row: how AI was actually used. Fixed slot order,
+  // never assigned by rank, so a filtered view never repaints the survivors.
+  var AI_ROLE = {
+    molecule_design: { label: "Molecule design", color: "var(--series-1)" },
+    target_id: { label: "Target ID", color: "var(--series-2)" },
+    both: { label: "Target + molecule", color: "var(--series-3)" },
+    repurposing: { label: "Repurposing", color: "var(--series-4)" },
+    personalised_design: { label: "Personalised design", color: "var(--series-5)" },
+    other: { label: "Other", color: "var(--muted)" }
+  };
+
   var CHANGE_LABEL = {
     drug_added: "new drug",
     drug_removed: "removed",
@@ -79,6 +90,18 @@
 
   function area(drug) {
     return drug.therapy_area_group || drug.therapy_area || "other";
+  }
+
+  function roleOf(drug) {
+    return AI_ROLE[drug.ai_role_group] ? drug.ai_role_group : "other";
+  }
+
+  // `Pharma.AI (PandaOmics, Chemistry42)` and `Pharma.AI (Chemistry42)` are the
+  // same platform spelled two ways; the filter needs one entry, not forty.
+  function platformFamily(drug) {
+    var raw = (drug.ai_platform || "").replace(/\(.*?\)/g, " ");
+    raw = raw.replace(/\s+/g, " ").trim().replace(/[,;\/]+$/, "");
+    return raw || "not stated";
   }
 
   function prettyDate(value) {
@@ -141,6 +164,8 @@
     area: "",
     modality: "",
     company: "",
+    role: "",
+    platform: "",
     stage: "",
     status: "",
     confidence: "",
@@ -163,7 +188,7 @@
 
   function writeHash() {
     var parts = [];
-    ["q", "area", "modality", "company", "stage", "status", "confidence"].forEach(function (key) {
+    ["q", "area", "modality", "company", "role", "platform", "stage", "status", "confidence"].forEach(function (key) {
       if (state[key]) parts.push(key + "=" + encodeURIComponent(state[key]));
     });
     if (state.strict) parts.push("strict=1");
@@ -179,6 +204,8 @@
     if (state.area && area(drug) !== state.area) return false;
     if (state.modality && drug.modality_group !== state.modality) return false;
     if (state.company && drug.company_clean !== state.company) return false;
+    if (state.role && roleOf(drug) !== state.role) return false;
+    if (state.platform && platformFamily(drug) !== state.platform) return false;
     if (state.stage && drugStage(drug) !== state.stage) return false;
     if (state.status && drug.derived.status !== state.status) return false;
     if (state.confidence && drug.confidence !== state.confidence) return false;
@@ -192,6 +219,7 @@
         drug.company,
         drug.partner,
         drug.ai_platform,
+        drug.ai_role,
         drug.target,
         drug.indication,
         drug.therapy_area,
@@ -441,12 +469,22 @@
         return d.derived.status;
       })
     );
+    var roles = Object.keys(AI_ROLE).filter(function (key) {
+      return D.drugs.some(function (d) {
+        return roleOf(d) === key;
+      });
+    });
+    var platforms = sortedValues(D.drugs.map(platformFamily));
 
     return (
       '<div class="filterbar" role="search">' +
       '<input type="search" id="q" placeholder="Search drug, code, company, target, indication or NCT ID" value="' +
       esc(state.q) +
       '" aria-label="Search">' +
+      options("AI role", "role", roles, function (key) {
+        return AI_ROLE[key].label;
+      }) +
+      options("Platform", "platform", platforms) +
       options("Therapy area", "area", areas, titleCase) +
       options("Modality", "modality", modalities, titleCase) +
       options("Company", "company", companies) +
@@ -1028,13 +1066,15 @@
     return section(
       "breakdowns",
       "Breakdowns",
-      "Where the cohort sits by therapy area, modality and company — each bar split by the phase its drugs have reached.",
+      "How AI was used, and where the cohort sits by therapy area, modality and company — each bar split by the phase its drugs have reached.",
       phaseLegend() +
-        '<div class="grid cols-3">' +
+        '<div class="grid cols-wide">' +
         stackedCard(
-          "Therapy area",
-          "Lead indication only; a drug in two areas is counted once.",
-          groupBy(rows, area)
+          "How AI was used",
+          "The claim each row rests on, from the ai_role column of the seed list.",
+          groupBy(rows, function (d) {
+            return AI_ROLE[roleOf(d)].label;
+          })
         ) +
         stackedCard(
           "Modality",
@@ -1042,6 +1082,11 @@
           groupBy(rows, function (d) {
             return d.modality_group;
           })
+        ) +
+        stackedCard(
+          "Therapy area",
+          "Lead indication only; a drug in two areas is counted once.",
+          groupBy(rows, area)
         ) +
         stackedCard(
           "Company",
@@ -1065,12 +1110,12 @@
     { key: "company", label: "Company", sort: function (d) { return d.company_clean.toLowerCase(); } },
     { key: "indication", label: "Target / indication", sort: function (d) { return (d.indication || "").toLowerCase(); } },
     { key: "area", label: "Area", sort: function (d) { return (d.therapy_area || "").toLowerCase(); } },
+    { key: "role", label: "AI role", sort: function (d) { return AI_ROLE[roleOf(d)].label; } },
+    { key: "platform", label: "Platform", sort: function (d) { return platformFamily(d).toLowerCase(); } },
     { key: "phase", label: "Phase", sort: function (d) { return stageIndex(drugStage(d)) * 10 + (d.derived.phase === "Phase 1/2" || d.derived.phase === "Phase 2/3" ? 1 : 0); } },
     { key: "status", label: "Status", sort: function (d) { return d.derived.status; } },
     { key: "trials", label: "Trials", num: true, sort: function (d) { return d.derived.trial_count || 0; } },
-    { key: "enrolment", label: "Enrol.", num: true, sort: function (d) { return d.derived.total_enrolment || 0; } },
-    { key: "confidence", label: "Confidence", sort: function (d) { return { high: 3, medium: 2, low: 1 }[d.confidence] || 0; } },
-    { key: "updated", label: "Updated", sort: function (d) { return d.derived.last_update_posted || ""; } }
+    { key: "confidence", label: "Confidence", sort: function (d) { return { high: 3, medium: 2, low: 1 }[d.confidence] || 0; } }
   ];
 
   function phasePill(drug) {
@@ -1119,10 +1164,23 @@
       esc(drug.indication) +
       "</div></td>" +
       "<td>" +
-      esc(titleCase(drug.therapy_area)) +
+      esc(softBreak(titleCase(drug.therapy_area))) +
       '<div class="cell-sub">' +
       esc(titleCase(drug.modality_group)) +
       "</div></td>" +
+      // How AI was used — the claim that puts the row on this list at all.
+      '<td><span class="pill role" title="' +
+      esc(drug.ai_role || "") +
+      '"><span class="dot" style="background:' +
+      AI_ROLE[roleOf(drug)].color +
+      '"></span>' +
+      esc(AI_ROLE[roleOf(drug)].label) +
+      "</span></td>" +
+      '<td><span title="' +
+      esc(drug.ai_platform || "") +
+      '">' +
+      esc(platformFamily(drug)) +
+      "</span></td>" +
       "<td>" +
       phasePill(drug) +
       (drug.derived.phase_basis === "ctgov" ? '<div class="cell-sub">from ClinicalTrials.gov</div>' : "") +
@@ -1133,18 +1191,15 @@
       "</td>" +
       '<td class="num">' +
       (drug.derived.trial_count || 0) +
-      "</td>" +
-      '<td class="num">' +
-      num(drug.derived.total_enrolment) +
+      (drug.derived.total_enrolment
+        ? '<div class="cell-sub">' + num(drug.derived.total_enrolment) + " enrolled</div>"
+        : "") +
       "</td>" +
       '<td><span class="pill c-' +
       esc(drug.confidence) +
       '">' +
       esc(titleCase(drug.confidence)) +
       "</span></td>" +
-      '<td class="num">' +
-      esc(prettyDate(drug.derived.last_update_posted)) +
-      "</td>" +
       "</tr>" +
       (state.open[drug.key] ? detailRow(drug) : "")
     );
@@ -1153,7 +1208,7 @@
   function detailRow(drug) {
     var trials = (drug.trials || []).length
       ? '<div class="table-scroll"><table class="trial-table"><thead><tr><th>Trial</th><th>Phase</th><th>Status</th>' +
-        "<th class='num'>Enrolment</th><th>Start</th><th>Primary completion</th><th>Results</th><th>Matched by</th></tr></thead><tbody>" +
+        "<th class='num'>Enrolment</th><th>Start</th><th>Primary completion</th><th>Updated</th><th>Results</th><th>Matched by</th></tr></thead><tbody>" +
         drug.trials
           .map(function (trial) {
             return (
@@ -1175,6 +1230,8 @@
               esc(prettyDate(trial.start_date)) +
               "</td><td>" +
               esc(prettyDate(trial.primary_completion_date)) +
+              "</td><td>" +
+              esc(prettyDate(trial.last_update_posted)) +
               "</td><td>" +
               (trial.has_results ? "posted" : "—") +
               '</td><td class="cell-sub">' +
@@ -1252,7 +1309,7 @@
       "drugs",
       "Drug table",
       "Every tracked drug, its live trials and the source the seed-list row was checked against. Select a row to open its trials.",
-      '<div class="card"><div class="section-head" style="margin-bottom:10px"><p>' +
+      '<div class="card table-bleed"><div class="section-head" style="margin-bottom:10px"><p>' +
         sorted.length +
         " drug" +
         (sorted.length === 1 ? "" : "s") +
@@ -1534,6 +1591,7 @@
     });
     document.getElementById("reset").addEventListener("click", function () {
       state.q = state.area = state.modality = state.company = state.stage = state.status = state.confidence = "";
+      state.role = state.platform = "";
       state.strict = false;
       render();
     });

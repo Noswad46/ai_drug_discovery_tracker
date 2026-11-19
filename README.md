@@ -130,17 +130,22 @@ site/
 * **Phase timeline** — cumulative count of drugs that had reached each phase by year, built
   from trial start dates so it reaches back before the tracker existed, plus the phase
   changes recorded between refreshes.
-* **Breakdowns** — therapy area, modality and company, each split by phase.
-* **Drug table** — searchable and sortable; a row opens its trials with links to
-  ClinicalTrials.gov and to the source the seed-list row was checked against. Exports the
-  filtered rows as CSV.
+* **Breakdowns** — how AI was used, therapy area, modality and company, each split by phase.
+* **Drug table** — searchable and sortable, with the **AI role** (target ID / molecule design
+  / both / repurposing / personalised design) and the **platform** that made the claim as
+  first-class columns, since that is what puts a row on this list at all. Hover either for
+  the seed list's full wording. A row opens its trials with links to ClinicalTrials.gov and
+  to the source the row was checked against. Exports the filtered rows as CSV.
 * **Changelog** — every refresh and what it changed.
 * **Review queue** — possible new entries, explicitly excluded from every count above.
 * **Inclusion criteria and method** — rendered from `criteria.md`, with the refresh date,
   seed-list checksum and any warnings from the last run.
 
-Filters apply to every chart and to the table at once, and are kept in the URL hash, so a
-filtered view can be shared as a link.
+Filters — AI role, platform, therapy area, modality, company, phase, status, confidence,
+plus a strict view that drops repurposing and personalised design — apply to every chart and
+to the table at once, and are kept in the URL hash, so a filtered view can be shared as a
+link (`#role=repurposing`, `#platform=Recursion OS`). Platform spellings are collapsed to
+their family, so `Pharma.AI` and `Pharma.AI (Chemistry42)` are one filter entry.
 
 ## Caveats worth keeping in mind
 
