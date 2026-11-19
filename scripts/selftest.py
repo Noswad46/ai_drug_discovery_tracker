@@ -263,6 +263,45 @@ class Diffing(unittest.TestCase):
         self.assertEqual(refresh.diff_snapshots(None, after), [])
 
 
+class CatalystDates(unittest.TestCase):
+    def test_windows(self):
+        self.assertEqual(
+            common.parse_catalyst_date("2027-Q1"),
+            {"start": "2027-01-01", "end": "2027-03-31", "label": "Q1 2027", "granularity": "quarter"},
+        )
+        self.assertEqual(common.parse_catalyst_date("2026-H2")["end"], "2026-12-31")
+        self.assertEqual(common.parse_catalyst_date("2027")["start"], "2027-01-01")
+        self.assertEqual(common.parse_catalyst_date("2027-02")["end"], "2027-02-28")
+        self.assertEqual(common.parse_catalyst_date("2028-02")["end"], "2028-02-29")  # leap
+        self.assertEqual(common.parse_catalyst_date("2027-03-15")["label"], "15 Mar 2027")
+
+    def test_rejects_what_it_cannot_read(self):
+        for value in ("next spring", "2027-Q5", "2027-13", "2027-02-30", "", "Q1 2027"):
+            self.assertIsNone(common.parse_catalyst_date(value), value)
+
+    def test_months_between(self):
+        self.assertEqual(common.months_between("2026-11-19", "2027-01-01"), 2)
+        self.assertEqual(common.months_between("2027-01-01", "2026-11-19"), -2)
+
+    def test_catalyst_file_is_valid(self):
+        """Every hand-written entry has to resolve, or the strip lies."""
+        raw = common.read_json(common.CATALYSTS_JSON, {}) or {}
+        keys = {row["key"] for row in common.load_seed()}
+        self.assertTrue(common.parse_catalyst_date(raw.get("last_reviewed", "")))
+        self.assertTrue(raw.get("catalysts"))
+        for entry in raw["catalysts"]:
+            self.assertIsNotNone(
+                common.parse_catalyst_date(entry.get("date", "")),
+                f"unreadable date: {entry.get('date')!r}",
+            )
+            self.assertIn(entry.get("type"), common.CATALYST_TYPES, entry.get("title"))
+            self.assertTrue(entry.get("title"))
+            if entry.get("drug_key"):
+                self.assertIn(entry["drug_key"], keys, "unknown drug_key")
+            else:
+                self.assertTrue(entry.get("subject"), "an entry needs a drug_key or a subject")
+
+
 class Flattening(unittest.TestCase):
     def test_flatten_reads_the_api_shape(self):
         record = {

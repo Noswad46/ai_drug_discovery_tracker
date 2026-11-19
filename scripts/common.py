@@ -6,12 +6,18 @@ runner with no `pip install` step, so there is nothing to pin or break.
 
 from __future__ import annotations
 
+import calendar as _calendar
 import csv
 import datetime as _dt
 import json
 import os
 import re
 import unicodedata
+
+_MONTHS = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+]
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(ROOT, "data")
@@ -27,6 +33,7 @@ REVIEW_QUEUE_JSON = os.path.join(DATA_DIR, "review-queue.json")
 REVIEW_DECISIONS_JSON = os.path.join(DATA_DIR, "review-decisions.json")
 OVERRIDES_JSON = os.path.join(DATA_DIR, "overrides.json")
 BENCHMARKS_JSON = os.path.join(DATA_DIR, "benchmarks.json")
+CATALYSTS_JSON = os.path.join(DATA_DIR, "catalysts.json")
 SPONSOR_ALIASES_JSON = os.path.join(DATA_DIR, "sponsor-aliases.json")
 
 # --------------------------------------------------------------------------
@@ -170,6 +177,75 @@ def clean_company(value: str) -> str:
     value = re.sub(r"\(.*?\)", " ", value or "")
     value = re.split(r"\b(?:and|licensed|acquired)\b", value, maxsplit=1, flags=re.I)[0]
     return re.sub(r"\s+", " ", value).strip(" ,;/")
+
+
+CATALYST_TYPES = {
+    "fda_decision": "FDA decision",
+    "readout": "Data readout",
+    "trial_start": "Trial start",
+    "regulatory": "Regulatory",
+    "presentation": "Presentation",
+    "other": "Milestone",
+}
+
+
+def parse_catalyst_date(value: str) -> dict | None:
+    """Parse a catalyst date at whatever precision the company actually gave.
+
+    Accepts YYYY, YYYY-MM, YYYY-MM-DD, YYYY-Qn and YYYY-Hn, and returns the
+    window it covers. The end of the window is what decides whether something
+    is overdue: `2027-Q1` is not late until April.
+    """
+    text = (value or "").strip().upper()
+
+    def window(year: int, first_month: int, last_month: int, label: str, grain: str) -> dict:
+        last_day = _calendar.monthrange(year, last_month)[1]
+        return {
+            "start": f"{year:04d}-{first_month:02d}-01",
+            "end": f"{year:04d}-{last_month:02d}-{last_day:02d}",
+            "label": label,
+            "granularity": grain,
+        }
+
+    match = re.fullmatch(r"(\d{4})-Q([1-4])", text)
+    if match:
+        year, quarter = int(match[1]), int(match[2])
+        return window(year, quarter * 3 - 2, quarter * 3, f"Q{quarter} {year}", "quarter")
+
+    match = re.fullmatch(r"(\d{4})-H([12])", text)
+    if match:
+        year, half = int(match[1]), int(match[2])
+        return window(year, 1 if half == 1 else 7, 6 if half == 1 else 12, f"H{half} {year}", "half")
+
+    match = re.fullmatch(r"(\d{4})-(\d{2})-(\d{2})", text)
+    if match:
+        year, month, day = int(match[1]), int(match[2]), int(match[3])
+        if not 1 <= month <= 12 or not 1 <= day <= _calendar.monthrange(year, month)[1]:
+            return None
+        iso = f"{year:04d}-{month:02d}-{day:02d}"
+        label = f"{day} {_MONTHS[month - 1]} {year}"
+        return {"start": iso, "end": iso, "label": label, "granularity": "day"}
+
+    match = re.fullmatch(r"(\d{4})-(\d{2})", text)
+    if match:
+        year, month = int(match[1]), int(match[2])
+        if not 1 <= month <= 12:
+            return None
+        return window(year, month, month, f"{_MONTHS[month - 1]} {year}", "month")
+
+    match = re.fullmatch(r"(\d{4})", text)
+    if match:
+        year = int(match[1])
+        return window(year, 1, 12, str(year), "year")
+
+    return None
+
+
+def months_between(start_iso: str, end_iso: str) -> int:
+    """Whole months from one ISO date to another; negative if it is in the past."""
+    start = [int(part) for part in start_iso[:7].split("-")]
+    end = [int(part) for part in end_iso[:7].split("-")]
+    return (end[0] - start[0]) * 12 + (end[1] - start[1])
 
 
 def today_iso() -> str:

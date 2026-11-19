@@ -1,0 +1,88 @@
+{
+  "_note": "Hand-maintained. The dashboard never writes to this file. Add an entry when a company guides to a dated event; delete it or set \"happened\" once it lands. Dates accept YYYY, YYYY-MM, YYYY-MM-DD, YYYY-Qn or YYYY-Hn — use the coarsest form the company actually gave, so the page never implies more precision than the source. drug_key is the slug of drug_name in seed-list.csv (and is validated at build time); leave it out for watchlist programmes that are not yet on the seed list and give \"subject\" instead. Types: fda_decision, readout, trial_start, regulatory, presentation, other.",
+  "last_reviewed": "2026-11-19",
+  "horizon_months": 18,
+  "catalysts": [
+    {
+      "drug_key": "zasocitinib",
+      "date": "2027-Q1",
+      "type": "fda_decision",
+      "title": "PDUFA date",
+      "detail": "FDA decision on the NDA for moderate-to-severe plaque psoriasis, under priority review. EMA MAA also accepted. Would be the first approval of a computationally designed drug on this list.",
+      "source_note": "Takeda news release",
+      "source_url": "https://www.takeda.com/newsroom/newsreleases/2026/fda-priority-review-zasocitinib-psoriasis/"
+    },
+    {
+      "drug_key": "zovegalisib",
+      "date": "2027-H1",
+      "type": "trial_start",
+      "title": "First-line Phase 3 start",
+      "detail": "Company guidance of \"early 2027\" for the 1L Phase 3 in PIK3CA-mutant HR+/HER2- breast cancer. ReDiscover-2 is already recruiting.",
+      "source_note": "Relay Q1 2026 results",
+      "source_url": "https://www.santelog.com/actualites-sante-nasdaq/relay-therapeutics-reports-first-quarter-2026-financial-results-and"
+    },
+    {
+      "drug_key": "rec-4881",
+      "date": "2027-H2",
+      "type": "trial_start",
+      "title": "Registrational trial start",
+      "detail": "Planned for 2H 2027 in familial adenomatous polyposis, after positive TUPELO Phase 1b/2 data in November 2026.",
+      "source_note": "Recursion Q3 2026 results",
+      "source_url": "https://www.biopharmawatch.com/news/RXRX/recursion-reports-q3-2026-results-and-clinical-data"
+    },
+    {
+      "drug_key": "abs-201",
+      "date": "2026-H2",
+      "type": "readout",
+      "title": "Hair-loss proof of concept",
+      "detail": "HEADLINE trial proof-of-concept data in androgenetic alopecia, guided for 2H 2026.",
+      "source_note": "Absci Q2 2026 business update",
+      "source_url": "https://investors.absci.com/news-releases/news-release-details/absci-reports-business-updates-and-second-quarter-2026-financial"
+    },
+    {
+      "drug_key": "sgr-3515",
+      "date": "2026-H1",
+      "type": "readout",
+      "title": "Initial Phase 1 data",
+      "detail": "Guided for 1H 2026 in advanced solid tumours while Schrodinger seeks a partner. Nothing found as of the last refresh — check whether this slipped or was reported quietly.",
+      "source_note": "Schrodinger 2026 strategic priorities",
+      "source_url": "https://www.businesswire.com/news/home/20260111045082/en/Schr%C3%B6dinger-Provides-Update-on-Progress-Across-the-Business-and-Outlines-2026-Strategic-Priorities"
+    },
+    {
+      "subject": "IAM-C1",
+      "company": "Iambic Therapeutics",
+      "date": "2026-Q4",
+      "type": "regulatory",
+      "title": "IND submission (CDK2/4)",
+      "detail": "Watchlist programme, not yet clinical-stage, so not counted in the totals above.",
+      "source_note": "criteria.md watchlist"
+    },
+    {
+      "subject": "ACCG-3535",
+      "company": "Structure Therapeutics",
+      "date": "2026-Q4",
+      "type": "trial_start",
+      "title": "Phase 1 start (amylin/calcitonin)",
+      "detail": "Watchlist programme. Entry would add a second Structure asset to the seed list.",
+      "source_note": "criteria.md watchlist"
+    },
+    {
+      "subject": "First clinical candidate",
+      "company": "Isomorphic Labs",
+      "date": "2026-Q4",
+      "type": "trial_start",
+      "title": "First trials guided for end 2026",
+      "detail": "No molecule disclosed. The most-watched absence on this list — nothing from Isomorphic is tracked yet because nothing has reached the clinic.",
+      "source_note": "criteria.md watchlist"
+    },
+    {
+      "subject": "First optioned immunology candidate",
+      "company": "Recursion / Sanofi",
+      "date": "2027",
+      "type": "trial_start",
+      "title": "Phase 1 expected 2027",
+      "detail": "Watchlist programme from the Recursion-Sanofi collaboration.",
+      "source_note": "criteria.md watchlist"
+    }
+  ]
+}

@@ -68,6 +68,40 @@ Sponsors with more than 80 interventional trials (Lilly, Takeda, BMS, Sumitomo) 
 swept — their AI assets are tracked by drug code instead, which keeps the queue reviewable.
 Both thresholds live at the top of `scripts/refresh.py`.
 
+## Keeping the catalysts current
+
+`data/catalysts.json` is the one file meant to be edited often, and the dashboard never
+writes to it. An entry looks like this:
+
+```json
+{
+  "drug_key": "zasocitinib",
+  "date": "2027-Q1",
+  "type": "fda_decision",
+  "title": "PDUFA date",
+  "detail": "FDA decision on the NDA for moderate-to-severe plaque psoriasis…",
+  "source_note": "Takeda news release",
+  "source_url": "https://www.takeda.com/newsroom/…"
+}
+```
+
+* `date` takes `YYYY`, `YYYY-MM`, `YYYY-MM-DD`, `YYYY-Qn` or `YYYY-Hn`. Use the coarsest form
+  the company actually gave — "early 2027" is `2027-H1`, not a made-up day — so the page
+  never implies more precision than the source.
+* `drug_key` is the slug of `drug_name` in `seed-list.csv`, validated at build time and by
+  `scripts/selftest.py`. Omit it and give `subject` + `company` instead for watchlist
+  programmes that have not reached the clinic.
+* `type` is one of `fda_decision`, `readout`, `trial_start`, `regulatory`, `presentation`,
+  `other`.
+* Entries past their window are shown last, flagged **past guidance**, and dropped after a
+  year. That is deliberate: a readout that never arrived is itself informative.
+* The weekly job summary lists anything overdue or due within two months, so the file gets a
+  nudge rather than quietly going stale. `last_reviewed` is printed on the page.
+
+Underneath the strip, the page also lists the next primary completion dates for active drugs
+straight from ClinicalTrials.gov. Those need no maintenance, but they are estimates that slip
+often — which is why they are kept visually separate from the curated entries.
+
 ## Scheduling
 
 `.github/workflows/refresh.yml` runs every Monday at 06:17 UTC, commits the new snapshot and
@@ -109,6 +143,7 @@ data/
   review-decisions.json    your verdicts on them (hand-edited)
   overrides.json           pinned/excluded trials and discovery opt-outs (hand-edited)
   benchmarks.json          published success rates used for comparison (hand-edited)
+  catalysts.json           upcoming readouts and decision dates (hand-edited)
   sponsor-aliases.json     sponsor spellings learned from matched trials (auto)
 site/
   index.html               static shell
@@ -122,6 +157,9 @@ site/
 
 * **Headline tiles** — drugs tracked, active development, Phase 3 or beyond, trials linked,
   and changes at this refresh.
+* **Upcoming catalysts** — a strip of dated events worth returning for: regulatory decisions
+  (zasocitinib's PDUFA in Q1 2027), guided readouts and planned trial starts, including
+  watchlist programmes that are not clinical-stage yet. Hand-maintained; see below.
 * **Pipeline funnel** — how far the cohort has got, with stage-to-stage progression compared
   against published rates (industry 2011–2020 and the BCG/Wellcome AI analysis, about 40% at
   Phase 2). Cohort rates use only drugs with a *resolved* outcome at that stage and always

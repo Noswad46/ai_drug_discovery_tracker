@@ -424,6 +424,99 @@
     );
   }
 
+  // ------------------------------------------------------------ catalysts
+
+  function renderCatalysts() {
+    var block = D.catalysts || {};
+    var curated = block.curated || [];
+    var derived = block.derived || [];
+    if (!curated.length && !derived.length) return "";
+
+    var cards = curated
+      .map(function (item) {
+        var countdown = item.window_open
+          ? "window open now"
+          : item.granularity === "year"
+          ? ""
+          : "in about " + item.months_away + " month" + (item.months_away === 1 ? "" : "s");
+        return (
+          '<article class="catalyst' +
+          (item.overdue ? " overdue" : "") +
+          '"' +
+          (item.drug_key ? ' data-drug="' + esc(item.subject) + '" tabindex="0" role="button"' : "") +
+          '><div class="cat-top"><span class="cat-date">' +
+          esc(item.date_label) +
+          '</span><span class="cat-type">' +
+          esc(item.type_label) +
+          "</span></div>" +
+          '<div class="cat-subject">' +
+          esc(item.subject) +
+          "</div>" +
+          '<div class="cat-meta">' +
+          esc([item.company, item.phase].filter(Boolean).join(" · ")) +
+          (item.tracked ? "" : " · not yet tracked") +
+          "</div>" +
+          '<div class="cat-title">' +
+          esc(item.title || "") +
+          "</div>" +
+          '<p class="cat-detail">' +
+          esc(item.detail || "") +
+          "</p>" +
+          '<div class="cat-foot">' +
+          (item.overdue
+            ? '<span class="cat-flag">past guidance</span>'
+            : '<span class="cat-when">' + esc(countdown) + "</span>") +
+          (item.source_url
+            ? '<a href="' +
+              esc(item.source_url) +
+              '" target="_blank" rel="noopener">' +
+              esc(item.source_note || "source") +
+              "</a>"
+            : '<span class="cat-when">' + esc(item.source_note || "") + "</span>") +
+          "</div></article>"
+        );
+      })
+      .join("");
+
+    var alsoDue = derived.length
+      ? '<p class="card-note" style="margin:14px 0 0">Also due, read straight from ClinicalTrials.gov at the ' +
+        "last refresh — primary completion dates for active drugs, which slip often and are " +
+        "estimates until a result is posted: " +
+        derived
+          .slice(0, 8)
+          .map(function (item) {
+            return (
+              "<strong>" +
+              esc(item.subject) +
+              "</strong> " +
+              esc(item.date_label) +
+              ' (<a href="' +
+              esc(item.url) +
+              '" target="_blank" rel="noopener">' +
+              esc(item.nct_id) +
+              "</a>)"
+            );
+          })
+          .join(" · ") +
+        (derived.length > 8 ? " · and " + (derived.length - 8) + " more" : "") +
+        ".</p>"
+      : "";
+
+    return section(
+      "catalysts",
+      "Upcoming catalysts",
+      "Dated events worth coming back for, across all tracked drugs — regulatory decisions, " +
+        "guided readouts and planned trial starts. Hand-maintained in <code>" +
+        esc(block.file || "data/catalysts.json") +
+        "</code>, last reviewed <strong>" +
+        esc(prettyDate(block.last_reviewed)) +
+        "</strong>; horizon " +
+        esc(block.horizon_months || 18) +
+        " months.",
+      '<div class="strip">' + cards + "</div>" + alsoDue
+    );
+  }
+
   // -------------------------------------------------------------- filters
 
   function renderFilters(rows) {
@@ -1550,6 +1643,7 @@
     root.innerHTML =
       renderMasthead() +
       renderTiles(rows) +
+      renderCatalysts() +
       renderFilters(rows) +
       renderFunnel(rows) +
       renderTimeline(rows) +
@@ -1630,6 +1724,23 @@
       var label = element.querySelector(".bar-label").textContent;
       var value = element.querySelector(".bar-value").textContent;
       bindTip(element, '<div class="tt-title">' + esc(label) + "</div>" + esc(value) + " drugs have reached this phase");
+    });
+
+    Array.prototype.forEach.call(document.querySelectorAll("[data-drug]"), function (card) {
+      function focusDrug(event) {
+        if (event.target.closest("a")) return;
+        state.q = card.getAttribute("data-drug");
+        render();
+        var table = document.getElementById("drugs");
+        if (table) table.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      card.addEventListener("click", focusDrug);
+      card.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          focusDrug(event);
+        }
+      });
     });
 
     var toggle = document.getElementById("theme-toggle");

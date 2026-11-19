@@ -12,7 +12,14 @@ from __future__ import annotations
 import argparse
 import sys
 
-from common import LATEST_JSON, REVIEW_QUEUE_JSON, read_json
+from common import (
+    CATALYSTS_JSON,
+    LATEST_JSON,
+    REVIEW_QUEUE_JSON,
+    months_between,
+    parse_catalyst_date,
+    read_json,
+)
 
 GROUP_TITLES = {
     "drug_added": "New drugs on the seed list",
@@ -89,6 +96,29 @@ def main() -> int:
             if len(rows) > 40:
                 print(f"- … and {len(rows) - 40} more")
             print()
+
+    # The catalyst strip is hand-maintained, so the weekly run says what is
+    # about to need attention rather than quietly going stale.
+    raw = read_json(CATALYSTS_JSON, {}) or {}
+    due, late = [], []
+    for entry in raw.get("catalysts", []):
+        window = parse_catalyst_date(entry.get("date", ""))
+        if not window:
+            continue
+        subject = entry.get("drug_key") or entry.get("subject") or "(unnamed)"
+        line = f"- **{subject}** — {entry.get('title')} ({entry.get('date')})"
+        if window["end"] < date:
+            late.append(line)
+        elif months_between(date, window["start"]) <= 2:
+            due.append(line)
+    if due or late:
+        print("### Catalysts to check\n")
+        if late:
+            print("Past their guided window — update or remove in `data/catalysts.json`:\n")
+            print("\n".join(late) + "\n")
+        if due:
+            print("Due within two months:\n")
+            print("\n".join(due) + "\n")
 
     warnings = latest.get("warnings") or []
     if warnings:

@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generated_at_utc": "2026-11-19T04:34:40+00:00",
+  "generated_at_utc": "2026-11-19T17:06:12+00:00",
   "last_refresh": "2026-11-19",
   "previous_refresh": "2026-11-18",
   "refresh_mode": "live",
@@ -150,6 +150,653 @@
   "caveats": [
    "Benchmark rates are per-phase transition rates for completed programmes. The funnel on this page is a snapshot of a young cohort: most drugs in it have not had the chance to progress or fail yet, so the funnel's stage-to-stage ratios are not success rates.",
    "The 'outcome known' rates on this page use only drugs whose programme has resolved at a phase - progressed beyond it, or stopped at it. Denominators are small; they are shown next to every rate."
+  ]
+ },
+ "catalysts": {
+  "last_reviewed": "2026-11-19",
+  "horizon_months": 18,
+  "file": "catalysts.json",
+  "warnings": [],
+  "curated": [
+   {
+    "source": "curated",
+    "subject": "ABS-201",
+    "drug_key": "abs-201",
+    "company": "Absci",
+    "phase": "Phase 1/2",
+    "tracked": true,
+    "type": "readout",
+    "type_label": "Data readout",
+    "title": "Hair-loss proof of concept",
+    "detail": "HEADLINE trial proof-of-concept data in androgenetic alopecia, guided for 2H 2026.",
+    "date": "2026-H2",
+    "date_label": "H2 2026",
+    "granularity": "half",
+    "start": "2026-07-01",
+    "end": "2026-12-31",
+    "months_away": 0,
+    "overdue": false,
+    "window_open": true,
+    "source_note": "Absci Q2 2026 business update",
+    "source_url": "https://investors.absci.com/news-releases/news-release-details/absci-reports-business-updates-and-second-quarter-2026-financial"
+   },
+   {
+    "source": "curated",
+    "subject": "ACCG-3535",
+    "drug_key": null,
+    "company": "Structure Therapeutics",
+    "phase": null,
+    "tracked": false,
+    "type": "trial_start",
+    "type_label": "Trial start",
+    "title": "Phase 1 start (amylin/calcitonin)",
+    "detail": "Watchlist programme. Entry would add a second Structure asset to the seed list.",
+    "date": "2026-Q4",
+    "date_label": "Q4 2026",
+    "granularity": "quarter",
+    "start": "2026-10-01",
+    "end": "2026-12-31",
+    "months_away": 0,
+    "overdue": false,
+    "window_open": true,
+    "source_note": "criteria.md watchlist",
+    "source_url": null
+   },
+   {
+    "source": "curated",
+    "subject": "First clinical candidate",
+    "drug_key": null,
+    "company": "Isomorphic Labs",
+    "phase": null,
+    "tracked": false,
+    "type": "trial_start",
+    "type_label": "Trial start",
+    "title": "First trials guided for end 2026",
+    "detail": "No molecule disclosed. The most-watched absence on this list — nothing from Isomorphic is tracked yet because nothing has reached the clinic.",
+    "date": "2026-Q4",
+    "date_label": "Q4 2026",
+    "granularity": "quarter",
+    "start": "2026-10-01",
+    "end": "2026-12-31",
+    "months_away": 0,
+    "overdue": false,
+    "window_open": true,
+    "source_note": "criteria.md watchlist",
+    "source_url": null
+   },
+   {
+    "source": "curated",
+    "subject": "IAM-C1",
+    "drug_key": null,
+    "company": "Iambic Therapeutics",
+    "phase": null,
+    "tracked": false,
+    "type": "regulatory",
+    "type_label": "Regulatory",
+    "title": "IND submission (CDK2/4)",
+    "detail": "Watchlist programme, not yet clinical-stage, so not counted in the totals above.",
+    "date": "2026-Q4",
+    "date_label": "Q4 2026",
+    "granularity": "quarter",
+    "start": "2026-10-01",
+    "end": "2026-12-31",
+    "months_away": 0,
+    "overdue": false,
+    "window_open": true,
+    "source_note": "criteria.md watchlist",
+    "source_url": null
+   },
+   {
+    "source": "curated",
+    "subject": "zasocitinib",
+    "drug_key": "zasocitinib",
+    "company": "Takeda",
+    "phase": "Filed",
+    "tracked": true,
+    "type": "fda_decision",
+    "type_label": "FDA decision",
+    "title": "PDUFA date",
+    "detail": "FDA decision on the NDA for moderate-to-severe plaque psoriasis, under priority review. EMA MAA also accepted. Would be the first approval of a computationally designed drug on this list.",
+    "date": "2027-Q1",
+    "date_label": "Q1 2027",
+    "granularity": "quarter",
+    "start": "2027-01-01",
+    "end": "2027-03-31",
+    "months_away": 2,
+    "overdue": false,
+    "window_open": false,
+    "source_note": "Takeda news release",
+    "source_url": "https://www.takeda.com/newsroom/newsreleases/2026/fda-priority-review-zasocitinib-psoriasis/"
+   },
+   {
+    "source": "curated",
+    "subject": "zovegalisib",
+    "drug_key": "zovegalisib",
+    "company": "Relay Therapeutics",
+    "phase": "Phase 3",
+    "tracked": true,
+    "type": "trial_start",
+    "type_label": "Trial start",
+    "title": "First-line Phase 3 start",
+    "detail": "Company guidance of \"early 2027\" for the 1L Phase 3 in PIK3CA-mutant HR+/HER2- breast cancer. ReDiscover-2 is already recruiting.",
+    "date": "2027-H1",
+    "date_label": "H1 2027",
+    "granularity": "half",
+    "start": "2027-01-01",
+    "end": "2027-06-30",
+    "months_away": 2,
+    "overdue": false,
+    "window_open": false,
+    "source_note": "Relay Q1 2026 results",
+    "source_url": "https://www.santelog.com/actualites-sante-nasdaq/relay-therapeutics-reports-first-quarter-2026-financial-results-and"
+   },
+   {
+    "source": "curated",
+    "subject": "First optioned immunology candidate",
+    "drug_key": null,
+    "company": "Recursion / Sanofi",
+    "phase": null,
+    "tracked": false,
+    "type": "trial_start",
+    "type_label": "Trial start",
+    "title": "Phase 1 expected 2027",
+    "detail": "Watchlist programme from the Recursion-Sanofi collaboration.",
+    "date": "2027",
+    "date_label": "2027",
+    "granularity": "year",
+    "start": "2027-01-01",
+    "end": "2027-12-31",
+    "months_away": 2,
+    "overdue": false,
+    "window_open": false,
+    "source_note": "criteria.md watchlist",
+    "source_url": null
+   },
+   {
+    "source": "curated",
+    "subject": "REC-4881",
+    "drug_key": "rec-4881",
+    "company": "Recursion",
+    "phase": "Phase 2",
+    "tracked": true,
+    "type": "trial_start",
+    "type_label": "Trial start",
+    "title": "Registrational trial start",
+    "detail": "Planned for 2H 2027 in familial adenomatous polyposis, after positive TUPELO Phase 1b/2 data in November 2026.",
+    "date": "2027-H2",
+    "date_label": "H2 2027",
+    "granularity": "half",
+    "start": "2027-07-01",
+    "end": "2027-12-31",
+    "months_away": 8,
+    "overdue": false,
+    "window_open": false,
+    "source_note": "Recursion Q3 2026 results",
+    "source_url": "https://www.biopharmawatch.com/news/RXRX/recursion-reports-q3-2026-results-and-clinical-data"
+   },
+   {
+    "source": "curated",
+    "subject": "SGR-3515",
+    "drug_key": "sgr-3515",
+    "company": "Schrödinger",
+    "phase": "Phase 1",
+    "tracked": true,
+    "type": "readout",
+    "type_label": "Data readout",
+    "title": "Initial Phase 1 data",
+    "detail": "Guided for 1H 2026 in advanced solid tumours while Schrodinger seeks a partner. Nothing found as of the last refresh — check whether this slipped or was reported quietly.",
+    "date": "2026-H1",
+    "date_label": "H1 2026",
+    "granularity": "half",
+    "start": "2026-01-01",
+    "end": "2026-06-30",
+    "months_away": 0,
+    "overdue": true,
+    "window_open": false,
+    "source_note": "Schrodinger 2026 strategic priorities",
+    "source_url": "https://www.businesswire.com/news/home/20260111045082/en/Schr%C3%B6dinger-Provides-Update-on-Progress-Across-the-Business-and-Outlines-2026-Strategic-Priorities"
+   }
+  ],
+  "derived": [
+   {
+    "source": "ctgov",
+    "subject": "ISM8207",
+    "drug_key": "ism8207",
+    "company": "Insilico Medicine",
+    "phase": "Phase 1",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "30 Nov 2026",
+    "start": "2026-11-30",
+    "nct_id": "NCT06445517",
+    "url": "https://clinicaltrials.gov/study/NCT06445517",
+    "trial_phase": [
+     "PHASE1"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "ENV-294",
+    "drug_key": "env-294",
+    "company": "Enveda Biosciences",
+    "phase": "Phase 2",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "Dec 2026",
+    "start": "2026-12-01",
+    "nct_id": "NCT07298395",
+    "url": "https://clinicaltrials.gov/study/NCT07298395",
+    "trial_phase": [
+     "PHASE2"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "LP-300",
+    "drug_key": "lp-300",
+    "company": "Lantern Pharma",
+    "phase": "Phase 2",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "Dec 2026",
+    "start": "2026-12-01",
+    "nct_id": "NCT05456256",
+    "url": "https://clinicaltrials.gov/study/NCT05456256",
+    "trial_phase": [
+     "PHASE2"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "ISM8969",
+    "drug_key": "ism8969",
+    "company": "Insilico Medicine",
+    "phase": "Phase 1",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "29 Jan 2027",
+    "start": "2027-01-29",
+    "nct_id": "NCT07581431",
+    "url": "https://clinicaltrials.gov/study/NCT07581431",
+    "trial_phase": [
+     "PHASE1"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "ABCL635",
+    "drug_key": "abcl635",
+    "company": "AbCellera",
+    "phase": "Phase 1/2",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "Feb 2027",
+    "start": "2027-02-01",
+    "nct_id": "NCT07118891",
+    "url": "https://clinicaltrials.gov/study/NCT07118891",
+    "trial_phase": [
+     "PHASE1",
+     "PHASE2"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "zasocitinib",
+    "drug_key": "zasocitinib",
+    "company": "Takeda",
+    "phase": "Filed",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "5 Feb 2027",
+    "start": "2027-02-05",
+    "nct_id": "NCT07244263",
+    "url": "https://clinicaltrials.gov/study/NCT07244263",
+    "trial_phase": [
+     "PHASE2"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "dexmedetomidine sublingual",
+    "drug_key": "dexmedetomidine-sublingual",
+    "company": "BioXcel Therapeutics",
+    "phase": "Approved",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "27 Feb 2027",
+    "start": "2027-02-27",
+    "nct_id": "NCT06335407",
+    "url": "https://clinicaltrials.gov/study/NCT06335407",
+    "trial_phase": [
+     "PHASE1"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "AU-007",
+    "drug_key": "au-007",
+    "company": "Aulos Bioscience",
+    "phase": "Phase 2",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "28 Feb 2027",
+    "start": "2027-02-28",
+    "nct_id": "NCT05267626",
+    "url": "https://clinicaltrials.gov/study/NCT05267626",
+    "trial_phase": [
+     "PHASE1",
+     "PHASE2"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "ACCG-2671",
+    "drug_key": "accg-2671",
+    "company": "Structure Therapeutics",
+    "phase": "Phase 1/2",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "Mar 2027",
+    "start": "2027-03-01",
+    "nct_id": "NCT07815678",
+    "url": "https://clinicaltrials.gov/study/NCT07815678",
+    "trial_phase": [
+     "PHASE1",
+     "PHASE2"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "aleniglipron",
+    "drug_key": "aleniglipron",
+    "company": "Structure Therapeutics",
+    "phase": "Phase 3",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "Mar 2027",
+    "start": "2027-03-01",
+    "nct_id": "NCT07946068",
+    "url": "https://clinicaltrials.gov/study/NCT07946068",
+    "trial_phase": [
+     "PHASE1"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "intismeran autogene",
+    "drug_key": "intismeran-autogene",
+    "company": "Moderna",
+    "phase": "Phase 3",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "23 Apr 2027",
+    "start": "2027-04-23",
+    "nct_id": "NCT06305767",
+    "url": "https://clinicaltrials.gov/study/NCT06305767",
+    "trial_phase": [
+     "PHASE1",
+     "PHASE2"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "ISM3091",
+    "drug_key": "ism3091",
+    "company": "Insilico Medicine",
+    "phase": "Phase 1",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "30 Apr 2027",
+    "start": "2027-04-30",
+    "nct_id": "NCT05932862",
+    "url": "https://clinicaltrials.gov/study/NCT05932862",
+    "trial_phase": [
+     "PHASE1"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "zovegalisib",
+    "drug_key": "zovegalisib",
+    "company": "Relay Therapeutics",
+    "phase": "Phase 3",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "30 Apr 2027",
+    "start": "2027-04-30",
+    "nct_id": "NCT05216432",
+    "url": "https://clinicaltrials.gov/study/NCT05216432",
+    "trial_phase": [
+     "PHASE1"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "GB-0895",
+    "drug_key": "gb-0895",
+    "company": "Generate:Biomedicines",
+    "phase": "Phase 3",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "May 2027",
+    "start": "2027-05-01",
+    "nct_id": "NCT07116889",
+    "url": "https://clinicaltrials.gov/study/NCT07116889",
+    "trial_phase": [
+     "PHASE1"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "LP-184",
+    "drug_key": "lp-184",
+    "company": "Lantern Pharma",
+    "phase": "Phase 1/2",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "1 May 2027",
+    "start": "2027-05-01",
+    "nct_id": "NCT07431216",
+    "url": "https://clinicaltrials.gov/study/NCT07431216",
+    "trial_phase": [
+     "PHASE1",
+     "PHASE2"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "GB-4362",
+    "drug_key": "gb-4362",
+    "company": "Generate:Biomedicines",
+    "phase": "Phase 1",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "Jun 2027",
+    "start": "2027-06-01",
+    "nct_id": "NCT07484022",
+    "url": "https://clinicaltrials.gov/study/NCT07484022",
+    "trial_phase": [
+     "PHASE1"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "HLX-1502",
+    "drug_key": "hlx-1502",
+    "company": "Healx",
+    "phase": "Phase 2",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "Jun 2027",
+    "start": "2027-06-01",
+    "nct_id": "NCT06541847",
+    "url": "https://clinicaltrials.gov/study/NCT06541847",
+    "trial_phase": [
+     "PHASE2"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "MDR-001",
+    "drug_key": "mdr-001",
+    "company": "MindRank",
+    "phase": "Phase 3",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "Jun 2027",
+    "start": "2027-06-01",
+    "nct_id": "NCT07274137",
+    "url": "https://clinicaltrials.gov/study/NCT07274137",
+    "trial_phase": [
+     "PHASE3"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "REC-4881",
+    "drug_key": "rec-4881",
+    "company": "Recursion",
+    "phase": "Phase 2",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "Jun 2027",
+    "start": "2027-06-01",
+    "nct_id": "NCT05552755",
+    "url": "https://clinicaltrials.gov/study/NCT05552755",
+    "trial_phase": [
+     "PHASE1",
+     "PHASE2"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "ISM5411",
+    "drug_key": "ism5411",
+    "company": "Insilico Medicine",
+    "phase": "Phase 2",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "15 Aug 2027",
+    "start": "2027-08-15",
+    "nct_id": "NCT07265570",
+    "url": "https://clinicaltrials.gov/study/NCT07265570",
+    "trial_phase": [
+     "PHASE2"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "ISM6331",
+    "drug_key": "ism6331",
+    "company": "Insilico Medicine",
+    "phase": "Phase 1/2",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "31 Aug 2027",
+    "start": "2027-08-31",
+    "nct_id": "NCT06566079",
+    "url": "https://clinicaltrials.gov/study/NCT06566079",
+    "trial_phase": [
+     "PHASE1",
+     "PHASE2"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "lirafugratinib",
+    "drug_key": "lirafugratinib",
+    "company": "Elevar Therapeutics",
+    "phase": "Phase 2",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "Sep 2027",
+    "start": "2027-09-01",
+    "nct_id": "NCT07359820",
+    "url": "https://clinicaltrials.gov/study/NCT07359820",
+    "trial_phase": [
+     "PHASE2"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "SGR-1505",
+    "drug_key": "sgr-1505",
+    "company": "Schrödinger",
+    "phase": "Phase 1",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "Nov 2027",
+    "start": "2027-11-01",
+    "nct_id": "NCT05544019",
+    "url": "https://clinicaltrials.gov/study/NCT05544019",
+    "trial_phase": [
+     "PHASE1"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "PEP08",
+    "drug_key": "pep08",
+    "company": "PharmaEngine",
+    "phase": "Phase 1",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "Dec 2027",
+    "start": "2027-12-01",
+    "nct_id": "NCT06973863",
+    "url": "https://clinicaltrials.gov/study/NCT06973863",
+    "trial_phase": [
+     "PHASE1"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "TG4050",
+    "drug_key": "tg4050",
+    "company": "Transgene",
+    "phase": "Phase 1/2",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "30 Dec 2027",
+    "start": "2027-12-30",
+    "nct_id": "NCT04183166",
+    "url": "https://clinicaltrials.gov/study/NCT04183166",
+    "trial_phase": [
+     "PHASE1",
+     "PHASE2"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "ISM3412",
+    "drug_key": "ism3412",
+    "company": "Insilico Medicine",
+    "phase": "Phase 1/2",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "31 Mar 2028",
+    "start": "2028-03-31",
+    "nct_id": "NCT06414460",
+    "url": "https://clinicaltrials.gov/study/NCT06414460",
+    "trial_phase": [
+     "PHASE1",
+     "PHASE2"
+    ]
+   },
+   {
+    "source": "ctgov",
+    "subject": "DF-003",
+    "drug_key": "df-003",
+    "company": "Drug Farm",
+    "phase": "Phase 1/2",
+    "type": "readout",
+    "type_label": "Primary completion due",
+    "date_label": "6 May 2028",
+    "start": "2028-05-06",
+    "nct_id": "NCT05319132",
+    "url": "https://clinicaltrials.gov/study/NCT05319132",
+    "trial_phase": []
+   }
   ]
  },
  "drugs": [

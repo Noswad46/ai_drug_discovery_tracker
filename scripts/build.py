@@ -20,6 +20,8 @@ import sys
 
 from common import (
     BENCHMARKS_JSON,
+    CATALYSTS_JSON,
+    CATALYST_TYPES,
     CHANGELOG_JSON,
     CRITERIA_MD,
     FUNNEL_STAGES,
@@ -28,7 +30,9 @@ from common import (
     REVIEW_QUEUE_JSON,
     SITE_DATA_DIR,
     SNAPSHOT_DIR,
+    months_between,
     now_utc_iso,
+    parse_catalyst_date,
     read_json,
     write_json,
 )
@@ -190,6 +194,114 @@ def compact_drug(drug: dict) -> dict:
     return out
 
 
+def build_catalysts(raw: dict, drugs: list[dict], as_of: str) -> tuple[list[dict], list[dict], list[str]]:
+    """Resolve the hand-maintained catalyst file against the tracked drugs.
+
+    Returns (curated, derived, warnings). Curated entries are the whole point —
+    a human wrote them. Derived entries are the next primary completion date
+    ClinicalTrials.gov holds for an active drug, so the strip keeps saying
+    something useful between manual updates.
+    """
+    warnings: list[str] = []
+    by_key = {drug["key"]: drug for drug in drugs}
+    horizon = int(raw.get("horizon_months") or 18)
+    curated: list[dict] = []
+
+    for index, entry in enumerate(raw.get("catalysts", [])):
+        window = parse_catalyst_date(entry.get("date", ""))
+        if not window:
+            warnings.append(
+                f"catalysts.json[{index}]: cannot read date {entry.get('date')!r} — skipped"
+            )
+            continue
+        drug = None
+        if entry.get("drug_key"):
+            drug = by_key.get(entry["drug_key"])
+            if not drug:
+                warnings.append(
+                    f"catalysts.json[{index}]: drug_key {entry['drug_key']!r} is not in seed-list.csv"
+                )
+        subject = drug["drug_name"] if drug else entry.get("subject") or "(unnamed)"
+        months_away = months_between(as_of, window["start"])
+        if months_away > horizon:
+            continue  # beyond the horizon the file asked for
+        overdue = window["end"] < as_of
+        if overdue and months_between(window["end"], as_of) > 12:
+            continue  # a year late and still nothing: stop showing it
+        curated.append(
+            {
+                "source": "curated",
+                "subject": subject,
+                "drug_key": drug["key"] if drug else None,
+                "company": drug["company"] if drug else entry.get("company"),
+                "phase": (drug.get("derived") or {}).get("phase") if drug else None,
+                "tracked": bool(drug),
+                "type": entry.get("type", "other"),
+                "type_label": CATALYST_TYPES.get(entry.get("type", "other"), "Milestone"),
+                "title": entry.get("title") or CATALYST_TYPES.get(entry.get("type", "other")),
+                "detail": entry.get("detail", ""),
+                "date": entry.get("date"),
+                "date_label": window["label"],
+                "granularity": window["granularity"],
+                "start": window["start"],
+                "end": window["end"],
+                "months_away": max(0, months_away),
+                "overdue": overdue,
+                # Already inside the guided window, but not yet past it.
+                "window_open": not overdue and window["start"] <= as_of <= window["end"],
+                "source_note": entry.get("source_note"),
+                "source_url": entry.get("source_url"),
+            }
+        )
+    # What is coming leads the strip; what has already slipped trails it, most
+    # recently missed first — it is a caveat, not the headline.
+    upcoming = sorted(
+        (item for item in curated if not item["overdue"]),
+        key=lambda item: (item["start"], item["end"], item["subject"]),
+    )
+    late = sorted(
+        (item for item in curated if item["overdue"]),
+        key=lambda item: (item["start"], item["subject"]),
+        reverse=True,
+    )
+    curated = upcoming + late
+
+    # Auto: the nearest primary completion still ahead of us, per active drug.
+    derived: list[dict] = []
+    for drug in drugs:
+        if (drug.get("derived") or {}).get("status") not in ("active", "approved"):
+            continue
+        upcoming = []
+        for trial in drug.get("trials", []):
+            window = parse_catalyst_date(trial.get("primary_completion_date") or "")
+            if not window or window["end"] < as_of:
+                continue
+            if months_between(as_of, window["start"]) > horizon:
+                continue
+            upcoming.append((window, trial))
+        if not upcoming:
+            continue
+        window, trial = min(upcoming, key=lambda pair: pair[0]["start"])
+        derived.append(
+            {
+                "source": "ctgov",
+                "subject": drug["drug_name"],
+                "drug_key": drug["key"],
+                "company": drug["company"],
+                "phase": (drug.get("derived") or {}).get("phase"),
+                "type": "readout",
+                "type_label": "Primary completion due",
+                "date_label": window["label"],
+                "start": window["start"],
+                "nct_id": trial.get("nct_id"),
+                "url": trial.get("url"),
+                "trial_phase": (trial.get("phases") or []),
+            }
+        )
+    derived.sort(key=lambda item: (item["start"], item["subject"]))
+    return curated, derived, warnings
+
+
 def load_history() -> list[dict]:
     """One compact row per snapshot: enough to draw phase counts over time."""
     history: list[dict] = []
@@ -224,12 +336,18 @@ def main() -> int:
 
     changelog = read_json(CHANGELOG_JSON, []) or []
     benchmarks = read_json(BENCHMARKS_JSON, {}) or {}
+    catalyst_file = read_json(CATALYSTS_JSON, {}) or {}
     queue = read_json(REVIEW_QUEUE_JSON, {"candidates": []}) or {}
 
     with open(CRITERIA_MD, "r", encoding="utf-8") as fh:
         criteria_md = fh.read()
 
     drugs = [compact_drug(d) for d in latest.get("drugs", [])]
+    catalysts, derived_catalysts, catalyst_warnings = build_catalysts(
+        catalyst_file, drugs, latest.get("snapshot_date") or ""
+    )
+    for warning in catalyst_warnings:
+        print(f"  warning: {warning}", file=sys.stderr)
     history = load_history()
     changes = (latest.get("changes_since_previous") or {}).get("changes", [])
 
@@ -262,6 +380,14 @@ def main() -> int:
             "file": os.path.basename(CRITERIA_MD),
         },
         "benchmarks": benchmarks,
+        "catalysts": {
+            "last_reviewed": catalyst_file.get("last_reviewed"),
+            "horizon_months": catalyst_file.get("horizon_months", 18),
+            "file": os.path.basename(CATALYSTS_JSON),
+            "warnings": catalyst_warnings,
+            "curated": catalysts,
+            "derived": derived_catalysts,
+        },
         "drugs": drugs,
         "history": history,
         "changes_since_last_refresh": changes,
@@ -296,7 +422,8 @@ def main() -> int:
     print(
         f"built site/data/dashboard.js ({size:.0f} KB) — {len(drugs)} drugs, "
         f"{sum(len(d['trials']) for d in drugs)} trial links, "
-        f"{len(history)} snapshots, {len(changes)} changes since last refresh",
+        f"{len(history)} snapshots, {len(catalysts)} catalysts "
+        f"(+{len(derived_catalysts)} derived), {len(changes)} changes since last refresh",
         file=sys.stderr,
     )
     return 0
