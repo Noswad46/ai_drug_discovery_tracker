@@ -79,13 +79,19 @@ jobs:
             echo "No new candidates this refresh."
           fi
 
+      # Pages publishing is opt-in: set the repository variable
+      # PUBLISH_PAGES=true once Pages is configured (Settings -> Pages ->
+      # Source: GitHub Actions). Until then the refresh still runs and commits.
       - uses: actions/configure-pages@v5
+        if: vars.PUBLISH_PAGES == 'true'
       - uses: actions/upload-pages-artifact@v3
+        if: vars.PUBLISH_PAGES == 'true'
         with:
           path: site
 
   deploy:
     needs: refresh
+    if: vars.PUBLISH_PAGES == 'true'
     runs-on: ubuntu-latest
     # Shared with publish.yml so two deploys never race.
     concurrency:

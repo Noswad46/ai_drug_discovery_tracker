@@ -22,6 +22,9 @@ concurrency:
 
 jobs:
   deploy:
+    # Opt-in: set the repository variable PUBLISH_PAGES=true once Pages is
+    # configured to build from GitHub Actions.
+    if: vars.PUBLISH_PAGES == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

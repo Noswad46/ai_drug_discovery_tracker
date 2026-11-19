@@ -77,11 +77,15 @@ It can also be run on demand from the Actions tab.
 
 `.github/workflows/publish.yml` redeploys the page when `site/` changes on `main`.
 
-To host it:
+Publishing is opt-in, so the refresh stays green whether or not the site is hosted:
 
-1. Push the repository to GitHub.
-2. Settings → Pages → Source: **GitHub Actions**.
-3. Run the *Refresh tracker* workflow once from the Actions tab.
+1. Push the repository to GitHub. The refresh already works at this point — it commits a
+   snapshot every week and you read the page locally.
+2. To host the page: Settings → Pages → Source: **GitHub Actions**. GitHub Pages serves from
+   a private repository only on a paid plan; on GitHub Free the repository has to be public.
+   Either way the published site is readable by anyone with the URL.
+3. Then set the repository variable `PUBLISH_PAGES` to `true`
+   (`gh variable set PUBLISH_PAGES --body true`). The deploy steps are skipped until it is.
 
 The workflow needs no secrets — ClinicalTrials.gov's API is public and unauthenticated.
 
