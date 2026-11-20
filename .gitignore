@@ -3,3 +3,8 @@ __pycache__/
 .DS_Store
 site/_shot.html
 .claude/
+
+# Local analysis, not part of the tracker
+us-health-spending.ipynb
+us_health_spending_1900_2024.csv
+.ipynb_checkpoints/
