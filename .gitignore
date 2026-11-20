@@ -7,4 +7,5 @@ site/_shot.html
 # Local analysis, not part of the tracker
 us-health-spending.ipynb
 us_health_spending_1900_2024.csv
+oecd_health_spending_per_capita.csv
 .ipynb_checkpoints/
