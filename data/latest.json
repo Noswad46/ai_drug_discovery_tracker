@@ -1,6 +1,6 @@
 {
-  "snapshot_date": "2026-11-19",
-  "generated_at_utc": "2026-11-19T04:34:40+00:00",
+  "snapshot_date": "2026-11-23",
+  "generated_at_utc": "2026-11-23T18:09:59+00:00",
   "source": {
     "api": "ClinicalTrials.gov API v2",
     "endpoint": "https://clinicaltrials.gov/api/v2/studies"
@@ -52,7 +52,7 @@
     },
     {
       "sponsor": "Eli Lilly",
-      "trials": 2811
+      "trials": 2813
     },
     {
       "sponsor": "Sumitomo Pharma",
@@ -1259,12 +1259,12 @@
             "PHASE1",
             "PHASE2"
           ],
-          "enrollment": 170,
+          "enrollment": 310,
           "enrollment_type": "ESTIMATED",
           "start_date": "2024-11-21",
-          "primary_completion_date": "2028-10-30",
-          "completion_date": "2028-10-30",
-          "last_update_posted": "2026-08-20",
+          "primary_completion_date": "2029-07",
+          "completion_date": "2029-07",
+          "last_update_posted": "2026-11-19",
           "results_first_posted": null,
           "has_results": false,
           "lead_sponsor": "Recursion Pharmaceuticals Inc.",
@@ -1297,12 +1297,12 @@
         "status_resolved_from_ctgov": false,
         "trial_count": 1,
         "active_trials": 1,
-        "total_enrolment": 170,
+        "total_enrolment": 310,
         "first_trial_start": "2024-11-21",
         "latest_trial_start": "2024-11-21",
-        "next_primary_completion": "2028-10-30",
+        "next_primary_completion": "2029-07",
         "has_results": false,
-        "last_update_posted": "2026-08-20",
+        "last_update_posted": "2026-11-19",
         "stage_first_start": {
           "Phase 1": "2024-11-21"
         }
@@ -1531,7 +1531,7 @@
           "title": "Study to Assess GTAEXS617 in Participants With Advanced Solid Tumors",
           "org_study_id": "GTAEXS617-001",
           "secondary_ids": [],
-          "overall_status": "RECRUITING",
+          "overall_status": "ACTIVE_NOT_RECRUITING",
           "last_known_status": null,
           "why_stopped": null,
           "study_type": "INTERVENTIONAL",
@@ -1544,7 +1544,7 @@
           "start_date": "2023-07-06",
           "primary_completion_date": "2028-01",
           "completion_date": "2028-05",
-          "last_update_posted": "2026-08-13",
+          "last_update_posted": "2026-11-20",
           "results_first_posted": null,
           "has_results": false,
           "lead_sponsor": "Exscientia AI Ltd., a wholly owned subsidiary of Recursion Pharmaceuticals, Inc.",
@@ -1627,7 +1627,7 @@
         "latest_trial_start": "2026-10-19",
         "next_primary_completion": "2028-01",
         "has_results": false,
-        "last_update_posted": "2026-08-13",
+        "last_update_posted": "2026-11-20",
         "stage_first_start": {
           "Phase 1": "2023-07-06"
         }
@@ -2653,8 +2653,7 @@
           "title": "A Study About How Well TAK-279 Works and Its Safety in Participants With Moderate-to-severe Plaque Psoriasis During 60 Weeks of Treatment With a Withdrawal and Retreatment Period",
           "org_study_id": "TAK-279-3002",
           "secondary_ids": [
-            "2023-505842-24-00",
-            "2023"
+            "2023-505842-24-00"
           ],
           "overall_status": "COMPLETED",
           "last_known_status": null,
@@ -2708,8 +2707,7 @@
           "org_study_id": "TAK-279-3001",
           "secondary_ids": [
             "jRCT2031230583",
-            "2023-505841-22-00",
-            "2023"
+            "2023-505841-22-00"
           ],
           "overall_status": "COMPLETED",
           "last_known_status": null,
@@ -3009,8 +3007,7 @@
           "org_study_id": "TAK-279-PsO-3006",
           "secondary_ids": [
             "2025-522567-15-00",
-            "jRCT2071250114",
-            "2025"
+            "jRCT2071250114"
           ],
           "overall_status": "RECRUITING",
           "last_known_status": null,
@@ -3058,8 +3055,7 @@
           "title": "Continuation Study of Zasocitinib in Adults With Psoriatic Arthritis",
           "org_study_id": "TAK-279-PsA-3003",
           "secondary_ids": [
-            "2025-522586-30-00",
-            "2025"
+            "2025-522586-30-00"
           ],
           "overall_status": "RECRUITING",
           "last_known_status": null,
@@ -3282,8 +3278,7 @@
           "org_study_id": "TAK-279-CD-2001",
           "secondary_ids": [
             "2023-506704-14-00",
-            "jRCT2051240050",
-            "2023"
+            "jRCT2051240050"
           ],
           "overall_status": "RECRUITING",
           "last_known_status": null,
@@ -3346,8 +3341,7 @@
           "org_study_id": "TAK-279-UC-2001",
           "secondary_ids": [
             "2023-506769-67-00",
-            "jRCT2031240228",
-            "2023"
+            "jRCT2031240228"
           ],
           "overall_status": "ACTIVE_NOT_RECRUITING",
           "last_known_status": null,
@@ -3453,8 +3447,7 @@
           "org_study_id": "TAK-279-VT-2001",
           "secondary_ids": [
             "2025-522309-40-00",
-            "jRCT2031250527",
-            "2025"
+            "jRCT2031250527"
           ],
           "overall_status": "ACTIVE_NOT_RECRUITING",
           "last_known_status": null,
@@ -3500,8 +3493,7 @@
           "title": "A Study of Zasocitinib in Adults With Hidradenitis Suppurativa",
           "org_study_id": "TAK-279-HS-2001",
           "secondary_ids": [
-            "2025-522831-33-00",
-            "2025"
+            "2025-522831-33-00"
           ],
           "overall_status": "ACTIVE_NOT_RECRUITING",
           "last_known_status": null,
@@ -4064,7 +4056,7 @@
           "start_date": "2025-06-13",
           "primary_completion_date": "2031-07",
           "completion_date": "2031-10",
-          "last_update_posted": "2026-11-18",
+          "last_update_posted": "2026-11-19",
           "results_first_posted": null,
           "has_results": false,
           "lead_sponsor": "Relay Therapeutics, Inc.",
@@ -4169,7 +4161,7 @@
         "latest_trial_start": "2025-08-26",
         "next_primary_completion": "2027-04-30",
         "has_results": false,
-        "last_update_posted": "2026-11-18",
+        "last_update_posted": "2026-11-19",
         "stage_first_start": {
           "Phase 3": "2025-08-26",
           "Phase 2": "2025-06-13",
@@ -5381,8 +5373,7 @@
           "org_study_id": "GB-0895-101",
           "secondary_ids": [
             "2023-507611-35-00",
-            "1008606",
-            "2023"
+            "1008606"
           ],
           "overall_status": "ACTIVE_NOT_RECRUITING",
           "last_known_status": null,
@@ -6358,8 +6349,7 @@
           "title": "A Study of VRG50635 in Participants With Amyotrophic Lateral Sclerosis (ALS)",
           "org_study_id": "VGCS-50635-002",
           "secondary_ids": [
-            "2023-506509-21",
-            "2023"
+            "2023-506509-21"
           ],
           "overall_status": "TERMINATED",
           "last_known_status": null,
@@ -6797,7 +6787,7 @@
           "title": "Study of AU-007, A Monoclonal Antibody That Binds to IL-2 and Inhibits IL-2Rα Binding, in Patients With Unresectable Locally Advanced or Metastatic Cancer",
           "org_study_id": "CP-AU-007-01",
           "secondary_ids": [],
-          "overall_status": "RECRUITING",
+          "overall_status": "ACTIVE_NOT_RECRUITING",
           "last_known_status": null,
           "why_stopped": null,
           "study_type": "INTERVENTIONAL",
@@ -6810,7 +6800,7 @@
           "start_date": "2022-04-04",
           "primary_completion_date": "2027-02-28",
           "completion_date": "2027-02-28",
-          "last_update_posted": "2026-09-18",
+          "last_update_posted": "2026-11-20",
           "results_first_posted": null,
           "has_results": false,
           "lead_sponsor": "Aulos Bioscience, Inc.",
@@ -6851,7 +6841,7 @@
         "latest_trial_start": "2022-04-04",
         "next_primary_completion": "2027-02-28",
         "has_results": false,
-        "last_update_posted": "2026-09-18",
+        "last_update_posted": "2026-11-20",
         "stage_first_start": {
           "Phase 1": "2022-04-04"
         }
@@ -7116,8 +7106,7 @@
             "V940-001",
             "2023-503652-27-00",
             "jRCT2041230169",
-            "U1111-1287-6366",
-            "2023"
+            "U1111-1287-6366"
           ],
           "overall_status": "ACTIVE_NOT_RECRUITING",
           "last_known_status": null,
@@ -7192,8 +7181,7 @@
             "2023-504923-20-00",
             "U1111-1290-3969",
             "jRCT2061240063",
-            "PHRR240705-007252",
-            "2023"
+            "PHRR240705-007252"
           ],
           "overall_status": "ACTIVE_NOT_RECRUITING",
           "last_known_status": null,
@@ -7272,8 +7260,7 @@
             "2023-506327-29-00",
             "U1111-1293-5814",
             "INTerpath-009",
-            "jRCT2061240105",
-            "2023"
+            "jRCT2061240105"
           ],
           "overall_status": "RECRUITING",
           "last_known_status": null,
@@ -7362,8 +7349,7 @@
             "V940-014",
             "U1111-1323-9950",
             "2025-522643-18-00",
-            "jRCT2021260028",
-            "2025"
+            "jRCT2021260028"
           ],
           "overall_status": "RECRUITING",
           "last_known_status": null,
@@ -7427,8 +7413,7 @@
           "secondary_ids": [
             "2023-505712-37-00",
             "U1111-1292-3589",
-            "V940",
-            "2023"
+            "V940"
           ],
           "overall_status": "TERMINATED",
           "last_known_status": null,
@@ -7533,8 +7518,7 @@
           "secondary_ids": [
             "2023-505177-32-00",
             "U1111-1291-1851",
-            "V940-004",
-            "2023"
+            "V940-004"
           ],
           "overall_status": "ACTIVE_NOT_RECRUITING",
           "last_known_status": null,
@@ -7608,7 +7592,7 @@
           "start_date": "2025-03-11",
           "primary_completion_date": "2031-09-03",
           "completion_date": "2031-09-03",
-          "last_update_posted": "2026-10-01",
+          "last_update_posted": "2026-11-20",
           "results_first_posted": null,
           "has_results": false,
           "lead_sponsor": "Merck Sharp & Dohme LLC",
@@ -7661,8 +7645,7 @@
             "V940-012",
             "INTerpath-012",
             "2023-504923-20-00",
-            "U1111-1290-3969",
-            "2023"
+            "U1111-1290-3969"
           ],
           "overall_status": "ACTIVE_NOT_RECRUITING",
           "last_known_status": null,
@@ -7717,8 +7700,7 @@
           "secondary_ids": [
             "V940-013",
             "U1111-1318-2495",
-            "2025-520902-37-00",
-            "2025"
+            "2025-520902-37-00"
           ],
           "overall_status": "RECRUITING",
           "last_known_status": null,
@@ -7778,8 +7760,7 @@
             "V940-005",
             "U1111-1292-1952",
             "2023-505658-17-00",
-            "INTerpath-005",
-            "2023"
+            "INTerpath-005"
           ],
           "overall_status": "ACTIVE_NOT_RECRUITING",
           "last_known_status": null,
@@ -7841,8 +7822,7 @@
           "title": "Safety, Tolerability, and Immunogenicity of mRNA-4157 Alone and in Combination in Participants With Solid Tumors",
           "org_study_id": "mRNA-4157-P101",
           "secondary_ids": [
-            "2023-505192-77-00",
-            "2023"
+            "2023-505192-77-00"
           ],
           "overall_status": "ACTIVE_NOT_RECRUITING",
           "last_known_status": null,
@@ -7898,7 +7878,7 @@
         "latest_trial_start": "2026-05-04",
         "next_primary_completion": "2027-04-23",
         "has_results": false,
-        "last_update_posted": "2026-11-17",
+        "last_update_posted": "2026-11-20",
         "stage_first_start": {
           "Phase 3": "2023-07-19",
           "Phase 2": "2019-07-18",
@@ -8645,7 +8625,7 @@
           "start_date": "2026-02-03",
           "primary_completion_date": "2028-09",
           "completion_date": "2028-09",
-          "last_update_posted": "2026-11-18",
+          "last_update_posted": "2026-11-20",
           "results_first_posted": null,
           "has_results": false,
           "lead_sponsor": "Peptilogics",
@@ -8719,7 +8699,7 @@
         "latest_trial_start": "2026-02-03",
         "next_primary_completion": "2028-09",
         "has_results": false,
-        "last_update_posted": "2026-11-18",
+        "last_update_posted": "2026-11-20",
         "stage_first_start": {
           "Phase 2": "2026-02-03",
           "Phase 1": "2022-03-31"
@@ -8831,6 +8811,52 @@
           "countries": [],
           "url": "https://clinicaltrials.gov/study/NCT07431216",
           "match_reason": "code:LP-184"
+        },
+        {
+          "nct_id": "NCT07951060",
+          "title": "LP-184 for Advanced or Metastatic Urothelial Carcinoma Selected by PTGR1 Expression and DNA Repair Deficiency",
+          "org_study_id": "2026-525808-94-00",
+          "secondary_ids": [
+            "2026-525808-94-00",
+            "EXUROC Bladder Target"
+          ],
+          "overall_status": "NOT_YET_RECRUITING",
+          "last_known_status": null,
+          "why_stopped": null,
+          "study_type": "INTERVENTIONAL",
+          "phases": [
+            "PHASE1",
+            "PHASE2"
+          ],
+          "enrollment": 39,
+          "enrollment_type": "ESTIMATED",
+          "start_date": "2026-11-30",
+          "primary_completion_date": "2029-11",
+          "completion_date": "2031-11",
+          "last_update_posted": "2026-11-20",
+          "results_first_posted": null,
+          "has_results": false,
+          "lead_sponsor": "Kristoffer Rohrberg",
+          "collaborators": [],
+          "conditions": [
+            "Advanced Urothelial Carcinoma",
+            "Urothelial Carcinoma (UC)",
+            "Urothelial Cancer of Renal Pelvis",
+            "Urothelial Carcinoma Bladder",
+            "Urothelial Carcinoma Ureter",
+            "Urothelial Carcinoma Urethra",
+            "Urothelial Carcinoma of the Renal Pelvis and Ureter",
+            "Urothelial Carcinoma of the Urinary Bladder",
+            "Urothelial/Bladder Cancer, Nos"
+          ],
+          "interventions": [
+            "Intravenous infusion of LP-184 on Day 1 and Day 8 of a 21-day cycle."
+          ],
+          "countries": [
+            "Denmark"
+          ],
+          "url": "https://clinicaltrials.gov/study/NCT07951060",
+          "match_reason": "code:LP-184"
         }
       ],
       "stale_from": null,
@@ -8842,14 +8868,14 @@
         "phase_ahead_of_seed": true,
         "status": "active",
         "status_resolved_from_ctgov": true,
-        "trial_count": 2,
-        "active_trials": 2,
-        "total_enrolment": 132,
+        "trial_count": 3,
+        "active_trials": 3,
+        "total_enrolment": 171,
         "first_trial_start": "2023-06-09",
-        "latest_trial_start": "2026-05-01",
+        "latest_trial_start": "2026-11-30",
         "next_primary_completion": "2027-05-01",
         "has_results": false,
-        "last_update_posted": "2026-05-04",
+        "last_update_posted": "2026-11-20",
         "stage_first_start": {
           "Phase 1": "2023-06-09"
         }
@@ -9482,9 +9508,9 @@
           "enrollment": 100,
           "enrollment_type": "ESTIMATED",
           "start_date": "2026-02-23",
-          "primary_completion_date": "2026-09-29",
-          "completion_date": "2026-09-29",
-          "last_update_posted": "2026-04-14",
+          "primary_completion_date": "2027-09-29",
+          "completion_date": "2027-09-29",
+          "last_update_posted": "2026-11-20",
           "results_first_posted": null,
           "has_results": false,
           "lead_sponsor": "University of North Carolina, Chapel Hill",
@@ -9495,7 +9521,8 @@
             "University of Florida",
             "Rhode Island Hospital",
             "Vanderbilt University School of Medicine",
-            "Walter Reed Army Institute of Research (WRAIR)"
+            "Walter Reed Army Institute of Research (WRAIR)",
+            "Lakeland Regional Health Systems, Inc."
           ],
           "conditions": [
             "Acute Stress Reaction",
@@ -9917,7 +9944,7 @@
         "latest_trial_start": "2026-09-01",
         "next_primary_completion": "2027-02-27",
         "has_results": true,
-        "last_update_posted": "2026-10-28",
+        "last_update_posted": "2026-11-20",
         "stage_first_start": {
           "Approved": "2023-07-01",
           "Phase 3": "2020-01-24",
@@ -10461,7 +10488,7 @@
   "candidates": [
     {
       "nct_id": "NCT07932041",
-      "title": "A Phase 1, Evaluate the Safety, Tolerability, Pharmacokinetics, and Pharmacodynamics of ISM9528",
+      "title": "Study Evaluation ISM9528 in Healthy Participants",
       "lead_sponsor": "InSilico Medicine Hong Kong Limited",
       "matched_sponsor": "Insilico Medicine",
       "phase": "Phase 1",
@@ -10474,7 +10501,7 @@
         "ISM9528 capsules"
       ],
       "url": "https://clinicaltrials.gov/study/NCT07932041",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10492,7 +10519,7 @@
         "BT-001 followed by Pembrolizumab (PD-1 Blocking Antibody)"
       ],
       "url": "https://clinicaltrials.gov/study/NCT07687875",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10512,7 +10539,7 @@
         "Sirolimus"
       ],
       "url": "https://clinicaltrials.gov/study/NCT07725380",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10534,7 +10561,7 @@
         "Placebo"
       ],
       "url": "https://clinicaltrials.gov/study/NCT07260877",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10553,7 +10580,7 @@
         "Placebo (Normal Saline 0.9%)"
       ],
       "url": "https://clinicaltrials.gov/study/NCT07108894",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10572,7 +10599,7 @@
         "Rivoceranib"
       ],
       "url": "https://clinicaltrials.gov/study/NCT06308575",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10591,7 +10618,7 @@
         "PEP07"
       ],
       "url": "https://clinicaltrials.gov/study/NCT05983523",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10610,7 +10637,7 @@
         "Placebo"
       ],
       "url": "https://clinicaltrials.gov/study/NCT06334419",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10630,7 +10657,7 @@
         "Keytruda"
       ],
       "url": "https://clinicaltrials.gov/study/NCT05558982",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10649,7 +10676,7 @@
         "PEP07"
       ],
       "url": "https://clinicaltrials.gov/study/NCT05659732",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10667,7 +10694,7 @@
         "TG6050"
       ],
       "url": "https://clinicaltrials.gov/study/NCT05788926",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10691,7 +10718,7 @@
         "Palbociclib"
       ],
       "url": "https://clinicaltrials.gov/study/NCT05759949",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10712,7 +10739,7 @@
         "VX-770"
       ],
       "url": "https://clinicaltrials.gov/study/NCT05668741",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10731,7 +10758,7 @@
         "LP-284"
       ],
       "url": "https://clinicaltrials.gov/study/NCT06132503",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10754,7 +10781,7 @@
         "KEYTRUDA®"
       ],
       "url": "https://clinicaltrials.gov/study/NCT04725331",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10776,7 +10803,7 @@
         "B"
       ],
       "url": "https://clinicaltrials.gov/study/NCT04455503",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10797,7 +10824,7 @@
         "LY3832479"
       ],
       "url": "https://clinicaltrials.gov/study/NCT04427501",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10816,7 +10843,7 @@
         "Apatinib, Apatinib Mesylate"
       ],
       "url": "https://clinicaltrials.gov/study/NCT04119453",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10837,7 +10864,7 @@
         "Apatinib"
       ],
       "url": "https://clinicaltrials.gov/study/NCT04073615",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10859,7 +10886,7 @@
         "BXCL701"
       ],
       "url": "https://clinicaltrials.gov/study/NCT04123574",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10881,7 +10908,7 @@
         "Pembrolizumab"
       ],
       "url": "https://clinicaltrials.gov/study/NCT03910660",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10900,7 +10927,7 @@
         "gaboxadol"
       ],
       "url": "https://clinicaltrials.gov/study/NCT03882918",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10919,7 +10946,7 @@
         "Prednisolone 10 mg"
       ],
       "url": "https://clinicaltrials.gov/study/NCT03643107",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10939,7 +10966,7 @@
         "TAK-935"
       ],
       "url": "https://clinicaltrials.gov/study/NCT03694275",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10960,7 +10987,7 @@
         "Placebo"
       ],
       "url": "https://clinicaltrials.gov/study/NCT03650452",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -10981,7 +11008,7 @@
         "Placebo"
       ],
       "url": "https://clinicaltrials.gov/study/NCT03194217",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -11003,7 +11030,7 @@
         "Avelumab"
       ],
       "url": "https://clinicaltrials.gov/study/NCT03260023",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -11022,7 +11049,7 @@
         "Placebo"
       ],
       "url": "https://clinicaltrials.gov/study/NCT03166215",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -11046,7 +11073,7 @@
         "MVA-MUC1-IL2 Vaccine"
       ],
       "url": "https://clinicaltrials.gov/study/NCT02823990",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -11067,7 +11094,7 @@
         "Gaboxadol"
       ],
       "url": "https://clinicaltrials.gov/study/NCT02996305",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -11088,7 +11115,7 @@
         "BP31510 in combination with chemotherapy"
       ],
       "url": "https://clinicaltrials.gov/study/NCT01957735",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -11109,7 +11136,7 @@
         "Compound 31543 Calcitriol 10 μg/mL"
       ],
       "url": "https://clinicaltrials.gov/study/NCT01588522",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -11130,7 +11157,7 @@
         "Irinotecan"
       ],
       "url": "https://clinicaltrials.gov/study/NCT01394939",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -11148,7 +11175,7 @@
         "Sterile Compound C31510 for Injection"
       ],
       "url": "https://clinicaltrials.gov/study/NCT01251562",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     },
     {
@@ -11168,19 +11195,58 @@
         "Placebo"
       ],
       "url": "https://clinicaltrials.gov/study/NCT00604890",
-      "first_seen": "2026-11-19",
+      "first_seen": "2026-11-23",
       "review_status": "pending"
     }
   ],
   "stats": {
     "drugs": 67,
-    "trials": 163,
+    "trials": 164,
     "drugs_with_trials": 58,
     "candidates_pending": 35
   },
   "changes_since_previous": {
-    "previous_snapshot": "2026-11-18",
-    "count": 0,
-    "changes": []
+    "previous_snapshot": "2026-11-19",
+    "count": 4,
+    "changes": [
+      {
+        "type": "enrolment_change",
+        "drug": "REC-1245",
+        "key": "rec-1245",
+        "company": "Recursion",
+        "nct_id": "NCT06678659",
+        "from": 170,
+        "to": 310,
+        "detail": "NCT06678659: enrolment 170 -> 310"
+      },
+      {
+        "type": "trial_status_change",
+        "drug": "REC-617",
+        "key": "rec-617",
+        "company": "Recursion (ex-Exscientia)",
+        "nct_id": "NCT05985655",
+        "from": "RECRUITING",
+        "to": "ACTIVE_NOT_RECRUITING",
+        "detail": "NCT05985655: RECRUITING -> ACTIVE_NOT_RECRUITING"
+      },
+      {
+        "type": "trial_status_change",
+        "drug": "AU-007",
+        "key": "au-007",
+        "company": "Aulos Bioscience",
+        "nct_id": "NCT05267626",
+        "from": "RECRUITING",
+        "to": "ACTIVE_NOT_RECRUITING",
+        "detail": "NCT05267626: RECRUITING -> ACTIVE_NOT_RECRUITING"
+      },
+      {
+        "type": "trial_added",
+        "drug": "LP-184",
+        "key": "lp-184",
+        "company": "Lantern Pharma",
+        "nct_id": "NCT07951060",
+        "detail": "NCT07951060 linked (NOT_YET_RECRUITING)"
+      }
+    ]
   }
 }

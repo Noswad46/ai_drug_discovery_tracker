@@ -1,5 +1,59 @@
 [
   {
+    "date": "2026-11-23",
+    "generated_at_utc": "2026-11-23T18:09:59+00:00",
+    "previous_snapshot": "2026-11-19",
+    "mode": "live",
+    "totals": {
+      "drugs": 67,
+      "trials": 164,
+      "drugs_with_trials": 58,
+      "candidates_pending": 35
+    },
+    "change_count": 4,
+    "changes": [
+      {
+        "type": "enrolment_change",
+        "drug": "REC-1245",
+        "key": "rec-1245",
+        "company": "Recursion",
+        "nct_id": "NCT06678659",
+        "from": 170,
+        "to": 310,
+        "detail": "NCT06678659: enrolment 170 -> 310"
+      },
+      {
+        "type": "trial_status_change",
+        "drug": "REC-617",
+        "key": "rec-617",
+        "company": "Recursion (ex-Exscientia)",
+        "nct_id": "NCT05985655",
+        "from": "RECRUITING",
+        "to": "ACTIVE_NOT_RECRUITING",
+        "detail": "NCT05985655: RECRUITING -> ACTIVE_NOT_RECRUITING"
+      },
+      {
+        "type": "trial_status_change",
+        "drug": "AU-007",
+        "key": "au-007",
+        "company": "Aulos Bioscience",
+        "nct_id": "NCT05267626",
+        "from": "RECRUITING",
+        "to": "ACTIVE_NOT_RECRUITING",
+        "detail": "NCT05267626: RECRUITING -> ACTIVE_NOT_RECRUITING"
+      },
+      {
+        "type": "trial_added",
+        "drug": "LP-184",
+        "key": "lp-184",
+        "company": "Lantern Pharma",
+        "nct_id": "NCT07951060",
+        "detail": "NCT07951060 linked (NOT_YET_RECRUITING)"
+      }
+    ],
+    "warnings": []
+  },
+  {
     "date": "2026-11-19",
     "generated_at_utc": "2026-11-19T04:34:40+00:00",
     "previous_snapshot": "2026-11-18",
