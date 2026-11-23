@@ -39,6 +39,9 @@
 
   --radius: 10px;
   --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* width the contents rail takes out of the page; 0 until it is pinned open */
+  --rail: 0px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -97,6 +100,7 @@
 
 body {
   margin: 0;
+  padding-left: var(--rail);
   background: var(--page);
   color: var(--ink);
   font-family: var(--sans);
@@ -109,6 +113,59 @@ a { color: inherit; text-decoration-color: var(--axis); text-underline-offset: 2
 a:hover { text-decoration-color: currentColor; }
 
 .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px 80px; }
+
+/* -------------------------------------------------------------- contents */
+/* Off-canvas drawer by default, pinned open as a left rail once the viewport
+   can spare the width. Pinned, it takes its width out of the page via --rail
+   rather than floating over the content. */
+
+.toc {
+  position: fixed; top: 0; left: 0; bottom: 0; z-index: 40;
+  width: 220px; padding: 26px 14px; overflow-y: auto;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition: transform 0.18s ease;
+}
+body.toc-open .toc { transform: none; visibility: visible; }
+
+.toc-head {
+  margin: 0 0 10px; padding-left: 12px;
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted);
+}
+.toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1px; }
+.toc a {
+  display: block; padding: 6px 10px; border-radius: 6px;
+  border-left: 2px solid transparent;
+  font-size: 13px; line-height: 1.35; color: var(--ink-2); text-decoration: none;
+}
+.toc a:hover { background: var(--surface-sunken); color: var(--ink); }
+.toc a.on {
+  background: var(--surface-sunken); color: var(--ink);
+  font-weight: 600; border-left-color: var(--series-1);
+}
+
+.toc-toggle {
+  position: fixed; left: 14px; bottom: 14px; z-index: 45;
+  padding: 9px 15px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--border); background: var(--surface); color: var(--ink);
+  font: inherit; font-size: 13px;
+  box-shadow: 0 2px 10px rgba(11, 11, 11, 0.16);
+}
+
+.toc-scrim { display: none; position: fixed; inset: 0; z-index: 35; background: rgba(11, 11, 11, 0.35); }
+body.toc-open .toc-scrim { display: block; }
+
+@media (min-width: 1200px) {
+  :root { --rail: 220px; }
+  .toc { transform: none; visibility: visible; }
+  .toc-toggle, .toc-scrim, body.toc-open .toc-scrim { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toc { transition: none; }
+}
 
 /* ---------------------------------------------------------------- header */
 
@@ -146,7 +203,9 @@ tr:focus-visible, [tabindex]:focus-visible {
 
 /* ----------------------------------------------------------------- cards */
 
-section { margin-top: 34px; scroll-margin-top: 16px; }
+/* the margin clears the sticky filter bar, which would otherwise sit over the
+   heading of whichever section you jumped to */
+section { margin-top: 34px; scroll-margin-top: 74px; }
 
 .section-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
 .section-head h2 { font-size: 19px; margin: 0; letter-spacing: -0.01em; }
@@ -318,7 +377,7 @@ tbody tr.detail-row > td { background: var(--surface-sunken); }
    inside its own container and the page itself never does. */
 @media (min-width: 1320px) {
   .table-bleed {
-    width: min(1380px, calc(100vw - 60px));
+    width: min(1380px, calc(100vw - 60px - var(--rail)));
     margin-left: 50%;
     transform: translateX(-50%);
   }
@@ -403,6 +462,6 @@ footer.page-foot {
 }
 
 @media print {
-  .filterbar, .theme-toggle { display: none; }
-  body { background: #fff; }
+  .filterbar, .theme-toggle, .toc, .toc-toggle, .toc-scrim { display: none; }
+  body { background: #fff; padding-left: 0; }
 }

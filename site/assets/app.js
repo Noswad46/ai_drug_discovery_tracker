@@ -245,9 +245,9 @@
       id +
       '"><div class="section-head"><h2>' +
       esc(title) +
-      "</h2><p>" +
-      note +
-      "</p></div>" +
+      "</h2>" +
+      (note ? "<p>" + note + "</p>" : "") +
+      "</div>" +
       bodyHtml +
       "</section>"
     );
@@ -505,14 +505,7 @@
     return section(
       "catalysts",
       "Upcoming catalysts",
-      "Dated events worth coming back for, across all tracked drugs — regulatory decisions, " +
-        "guided readouts and planned trial starts. Hand-maintained in <code>" +
-        esc(block.file || "data/catalysts.json") +
-        "</code>, last reviewed <strong>" +
-        esc(prettyDate(block.last_reviewed)) +
-        "</strong>; horizon " +
-        esc(block.horizon_months || 18) +
-        " months.",
+      "",
       '<div class="strip">' + cards + "</div>" + alsoDue
     );
   }
@@ -1633,6 +1626,135 @@
     URL.revokeObjectURL(link.href);
   }
 
+  // ------------------------------------------------------------ contents
+
+  /* The rail is built from the rendered DOM rather than a fixed list, so a
+     section that drops out — catalysts, when there are none — drops out of it
+     too, and a new section joins it for free. */
+
+  var TOC_LABEL = { review: "Review queue", methods: "Method" };
+  var tocSections = [];
+  var tocLock = null; // section id a jump is holding the marker on, null when free-scrolling
+
+  function buildToc() {
+    var list = document.getElementById("toc-list");
+    if (!list) return;
+    tocSections = Array.prototype.slice.call(root.querySelectorAll("section[id]"));
+    list.innerHTML =
+      '<li><a href="#" data-target="">Overview</a></li>' +
+      tocSections
+        .map(function (node) {
+          var heading = node.querySelector(".section-head h2");
+          return (
+            '<li><a href="#' +
+            esc(node.id) +
+            '" data-target="' +
+            esc(node.id) +
+            '">' +
+            esc(TOC_LABEL[node.id] || (heading ? heading.textContent : node.id)) +
+            "</a></li>"
+          );
+        })
+        .join("");
+    document.getElementById("toc").removeAttribute("hidden");
+    document.getElementById("toc-toggle").removeAttribute("hidden");
+    markTocPosition();
+  }
+
+  /* The filter bar is sticky and wraps to two rows on narrower viewports, so
+     how much of the top of the viewport it eats is only knowable at run time. */
+  function headerOffset() {
+    var bar = document.querySelector(".filterbar");
+    var pinned = bar && window.getComputedStyle(bar).position === "sticky";
+    return (pinned ? bar.getBoundingClientRect().height : 0) + 14;
+  }
+
+  function spySection() {
+    var line = window.pageYOffset + headerOffset() + 26;
+    var current = "";
+    tocSections.forEach(function (node) {
+      if (node.getBoundingClientRect().top + window.pageYOffset <= line) current = node.id;
+    });
+    return current;
+  }
+
+  function markTocPosition() {
+    /* While a jump is locked in, the rail shows where you asked to go. The last
+       sections sit inside the final screenful, so scroll position alone can
+       never mark them — the page runs out of room before they reach the top. */
+    var current = tocLock === null ? spySection() : tocLock;
+    Array.prototype.forEach.call(document.querySelectorAll("#toc-list a"), function (link) {
+      var on = link.getAttribute("data-target") === current;
+      link.classList.toggle("on", on);
+      if (on) link.setAttribute("aria-current", "true");
+      else link.removeAttribute("aria-current");
+    });
+  }
+
+  function setToc(open) {
+    document.body.classList.toggle("toc-open", open);
+    document.getElementById("toc-toggle").setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  function scrollMode() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+  }
+
+  function wireToc() {
+    document.getElementById("toc").addEventListener("click", function (event) {
+      var link = event.target.closest("a[data-target]");
+      if (!link) return;
+      /* Scroll rather than let the browser follow the href: the hash carries
+         filter state, and writeHash would wipe a section anchor anyway. */
+      event.preventDefault();
+      var id = link.getAttribute("data-target");
+      var target = document.getElementById(id);
+      var top = target
+        ? target.getBoundingClientRect().top + window.pageYOffset - headerOffset()
+        : 0;
+      tocLock = id;
+      markTocPosition();
+      window.scrollTo({ top: Math.max(0, top), behavior: scrollMode() });
+      setToc(false);
+    });
+    document.getElementById("toc-toggle").addEventListener("click", function () {
+      setToc(!document.body.classList.contains("toc-open"));
+    });
+    document.getElementById("toc-scrim").addEventListener("click", function () {
+      setToc(false);
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") setToc(false);
+    });
+    /* Any scroll the reader drives themselves hands the marker back to the spy.
+       mousedown covers scrollbar drags; it fires before the click above, so a
+       rail click releases and then immediately re-locks. */
+    ["wheel", "touchstart", "mousedown", "keydown"].forEach(function (type) {
+      window.addEventListener(
+        type,
+        function () {
+          if (tocLock === null) return;
+          tocLock = null;
+          markTocPosition();
+        },
+        { passive: true }
+      );
+    });
+    var pending = false;
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (pending) return;
+        pending = true;
+        requestAnimationFrame(function () {
+          pending = false;
+          markTocPosition();
+        });
+      },
+      { passive: true }
+    );
+  }
+
   // -------------------------------------------------------------- render
 
   var timelineData = null;
@@ -1660,6 +1782,7 @@
 
     drawTimeline(document.getElementById("timeline-chart"), timelineData);
     wire(rows);
+    buildToc();
     writeHash();
   }
 
@@ -1767,6 +1890,7 @@
 
   readHash();
   render();
+  wireToc();
 
   var resizeTimer = null;
   window.addEventListener("resize", function () {

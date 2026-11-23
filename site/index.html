@@ -16,6 +16,16 @@
     />
   </head>
   <body>
+    <!-- Both the rail and its toggle stay hidden until app.js fills them in,
+         so a JavaScript-off page shows no empty chrome. -->
+    <nav class="toc" id="toc" aria-label="Page contents" hidden>
+      <p class="toc-head">Contents</p>
+      <ol id="toc-list"></ol>
+    </nav>
+    <button class="toc-toggle" id="toc-toggle" type="button" aria-controls="toc" aria-expanded="false" hidden>
+      Contents
+    </button>
+    <div class="toc-scrim" id="toc-scrim"></div>
     <main class="wrap" id="app">
       <noscript>
         <h1>AI-designed drugs in clinical development</h1>
