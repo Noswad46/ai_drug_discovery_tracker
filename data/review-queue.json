@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-19",
+  "generated": "2026-11-23",
   "note": "Trials from tracked sponsors that are not linked to a drug in seed-list.csv. Nothing here is counted in the dashboard totals. Review each one against criteria.md, then either add a row to seed-list.csv or record a decision in data/review-decisions.json.",
   "candidates": [
     {
@@ -19,7 +19,7 @@
       "url": "https://clinicaltrials.gov/study/NCT07932041",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT07687875",
@@ -38,7 +38,7 @@
       "url": "https://clinicaltrials.gov/study/NCT07687875",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT07725380",
@@ -59,7 +59,7 @@
       "url": "https://clinicaltrials.gov/study/NCT07725380",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT07260877",
@@ -82,7 +82,7 @@
       "url": "https://clinicaltrials.gov/study/NCT07260877",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT07108894",
@@ -102,7 +102,7 @@
       "url": "https://clinicaltrials.gov/study/NCT07108894",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT06308575",
@@ -122,7 +122,7 @@
       "url": "https://clinicaltrials.gov/study/NCT06308575",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT05983523",
@@ -142,7 +142,7 @@
       "url": "https://clinicaltrials.gov/study/NCT05983523",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT06334419",
@@ -162,7 +162,7 @@
       "url": "https://clinicaltrials.gov/study/NCT06334419",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT05558982",
@@ -183,7 +183,7 @@
       "url": "https://clinicaltrials.gov/study/NCT05558982",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT05659732",
@@ -203,7 +203,7 @@
       "url": "https://clinicaltrials.gov/study/NCT05659732",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT05788926",
@@ -222,7 +222,7 @@
       "url": "https://clinicaltrials.gov/study/NCT05788926",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT05759949",
@@ -247,7 +247,7 @@
       "url": "https://clinicaltrials.gov/study/NCT05759949",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT05668741",
@@ -269,7 +269,7 @@
       "url": "https://clinicaltrials.gov/study/NCT05668741",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT06132503",
@@ -289,7 +289,7 @@
       "url": "https://clinicaltrials.gov/study/NCT06132503",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT04725331",
@@ -313,7 +313,7 @@
       "url": "https://clinicaltrials.gov/study/NCT04725331",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT04455503",
@@ -336,7 +336,7 @@
       "url": "https://clinicaltrials.gov/study/NCT04455503",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT04427501",
@@ -358,7 +358,7 @@
       "url": "https://clinicaltrials.gov/study/NCT04427501",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT04119453",
@@ -378,7 +378,7 @@
       "url": "https://clinicaltrials.gov/study/NCT04119453",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT04073615",
@@ -400,7 +400,7 @@
       "url": "https://clinicaltrials.gov/study/NCT04073615",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT04123574",
@@ -423,7 +423,7 @@
       "url": "https://clinicaltrials.gov/study/NCT04123574",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT03910660",
@@ -446,7 +446,7 @@
       "url": "https://clinicaltrials.gov/study/NCT03910660",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT03810742",
@@ -486,7 +486,7 @@
       "url": "https://clinicaltrials.gov/study/NCT03882918",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT03643107",
@@ -506,7 +506,7 @@
       "url": "https://clinicaltrials.gov/study/NCT03643107",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT03694275",
@@ -527,7 +527,7 @@
       "url": "https://clinicaltrials.gov/study/NCT03694275",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT03650452",
@@ -549,7 +549,7 @@
       "url": "https://clinicaltrials.gov/study/NCT03650452",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT03194217",
@@ -571,7 +571,7 @@
       "url": "https://clinicaltrials.gov/study/NCT03194217",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT03260023",
@@ -594,7 +594,7 @@
       "url": "https://clinicaltrials.gov/study/NCT03260023",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT03166215",
@@ -614,7 +614,7 @@
       "url": "https://clinicaltrials.gov/study/NCT03166215",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT02823990",
@@ -639,7 +639,7 @@
       "url": "https://clinicaltrials.gov/study/NCT02823990",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT02996305",
@@ -661,7 +661,7 @@
       "url": "https://clinicaltrials.gov/study/NCT02996305",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT01957735",
@@ -683,7 +683,7 @@
       "url": "https://clinicaltrials.gov/study/NCT01957735",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT01588522",
@@ -705,7 +705,7 @@
       "url": "https://clinicaltrials.gov/study/NCT01588522",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT01394939",
@@ -727,7 +727,7 @@
       "url": "https://clinicaltrials.gov/study/NCT01394939",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT01251562",
@@ -746,7 +746,7 @@
       "url": "https://clinicaltrials.gov/study/NCT01251562",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     },
     {
       "nct_id": "NCT00604890",
@@ -767,7 +767,7 @@
       "url": "https://clinicaltrials.gov/study/NCT00604890",
       "first_seen": "2026-11-18",
       "review_status": "pending",
-      "last_seen": "2026-11-19"
+      "last_seen": "2026-11-23"
     }
   ]
 }
