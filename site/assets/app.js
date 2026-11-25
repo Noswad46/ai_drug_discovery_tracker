@@ -963,6 +963,293 @@
     return ticks;
   }
 
+  // ----------------------------------------------------- phase durations
+
+  /* How long the cohort takes to climb a phase.
+
+     The obvious statistic — median months among the drugs that moved up — is
+     badly wrong here, and wrong in the flattering direction. Only 13 of the 57
+     drugs that reached Phase 1 have moved to Phase 2; the 32 still live have
+     already been waiting a median 23 months, which is as long as the ones that
+     moved took. Averaging the movers alone throws away everyone slow.
+
+     So this treats the question as what it is: time-to-event with competing
+     risks. A drug either advances, stops (and never will advance), or is still
+     waiting and censored at the snapshot date. The Aalen-Johansen estimator
+     below gives the share that had advanced by month t while properly
+     accounting for the shrinking denominator. */
+
+  var DURATION_STEPS = [
+    { from: "Phase 1", to: "Phase 2" },
+    { from: "Phase 2", to: "Phase 3" },
+    { from: "Phase 3", to: "Filed" }
+  ];
+  var MIN_AT_RISK = 5; // below this a curve is noise dressed up as a finding
+
+  function parseLoose(value) {
+    if (!value) return null;
+    var bits = String(value).split("-");
+    var year = parseInt(bits[0], 10);
+    if (!year) return null;
+    return new Date(Date.UTC(year, (parseInt(bits[1], 10) || 1) - 1, parseInt(bits[2], 10) || 1));
+  }
+
+  function monthsApart(from, to) {
+    return Math.round((to - from) / (1000 * 60 * 60 * 24 * 30.44));
+  }
+
+  function durationStats(rows, step) {
+    var snapshot = parseLoose(D.meta.last_refresh);
+    var observations = [];
+    rows.forEach(function (drug) {
+      var stages = (drug.derived && drug.derived.stage_first_start) || {};
+      var entered = parseLoose(stages[step.from]);
+      if (!entered) return;
+      var advanced = parseLoose(stages[step.to]);
+      if (advanced && advanced >= entered) {
+        observations.push({ months: monthsApart(entered, advanced), event: "advanced", drug: drug });
+        return;
+      }
+      /* A stopped drug leaves the risk set when it stopped, not today. No
+         discontinuation date is collected, but the last trial update is a
+         decent stand-in — carrying it to the snapshot instead would keep a
+         programme that died in 2023 propping up the denominator for years. */
+      var stopped = drug.derived.status === "discontinued" || drug.derived.status === "deprioritised";
+      var leftAt = snapshot;
+      if (stopped) {
+        var lastSeen = parseLoose(drug.derived.last_update_posted);
+        if (lastSeen && lastSeen > entered && lastSeen < snapshot) leftAt = lastSeen;
+      }
+      observations.push({
+        months: Math.max(0, monthsApart(entered, leftAt)),
+        event: stopped ? "stopped" : "waiting",
+        drug: drug
+      });
+    });
+    if (!observations.length) return null;
+
+    observations.sort(function (a, b) { return a.months - b.months; });
+
+    // Aalen-Johansen: advancing and stopping compete, so each is credited only
+    // out of the drugs still in the phase at that moment.
+    var atRisk = observations.length;
+    var stillHere = 1;
+    var advanced = 0;
+    var stopped = 0;
+    var curve = [{ months: 0, advanced: 0, stopped: 0 }];
+    var index = 0;
+    while (index < observations.length) {
+      var at = observations[index].months;
+      var moved = 0, quit = 0, leaving = 0;
+      while (index < observations.length && observations[index].months === at) {
+        if (observations[index].event === "advanced") moved++;
+        else if (observations[index].event === "stopped") quit++;
+        leaving++;
+        index++;
+      }
+      if (moved || quit) {
+        advanced += stillHere * (moved / atRisk);
+        stopped += stillHere * (quit / atRisk);
+        stillHere *= 1 - (moved + quit) / atRisk;
+      }
+      atRisk -= leaving;
+      curve.push({ months: at, advanced: advanced, stopped: stopped });
+    }
+
+    function tally(kind) {
+      return observations.filter(function (o) { return o.event === kind; }).length;
+    }
+    function atRiskAt(months) {
+      return observations.filter(function (o) { return o.months >= months; }).length;
+    }
+
+    /* Past the point where only a handful of drugs are still at risk, one
+       event moves the estimate by tens of percent — the curve stops being a
+       measurement and starts being an artefact of the last drug standing. So
+       everything below is truncated at the last month where MIN_AT_RISK drugs
+       were still in the phase, and any share beyond it is simply not claimed. */
+    var horizon = 0;
+    observations.forEach(function (o) {
+      if (atRiskAt(o.months) >= MIN_AT_RISK) horizon = Math.max(horizon, o.months);
+    });
+
+    var trimmed = curve.filter(function (point) { return point.months <= horizon; });
+    if (!trimmed.length) trimmed = [curve[0]];
+
+    function shareBy(months) {
+      if (months > horizon) return null;
+      var value = 0;
+      trimmed.forEach(function (point) { if (point.months <= months) value = point.advanced; });
+      return value;
+    }
+    var crossing = trimmed.filter(function (point) { return point.advanced >= 0.5; })[0];
+
+    return {
+      step: step,
+      observations: observations,
+      curve: trimmed,
+      total: observations.length,
+      advanced: tally("advanced"),
+      stopped: tally("stopped"),
+      waiting: tally("waiting"),
+      horizon: horizon,
+      maxMonths: Math.max(12, horizon),
+      medianMonths: crossing ? crossing.months : null,
+      shareBy: shareBy,
+      atRiskAt: atRiskAt,
+      waitingMedian: (function () {
+        var live = observations
+          .filter(function (o) { return o.event === "waiting"; })
+          .map(function (o) { return o.months; })
+          .sort(function (a, b) { return a - b; });
+        if (!live.length) return null;
+        var mid = Math.floor(live.length / 2);
+        return live.length % 2 ? live[mid] : Math.round((live[mid - 1] + live[mid]) / 2);
+      })()
+    };
+  }
+
+  function renderDurations(rows) {
+    /* Keep each panel tied to its step index: drawDurations() looks the chart
+       containers up by it, so a dropped step must not shift the rest along. */
+    var panels = DURATION_STEPS.map(function (step, index) {
+      var stats = durationStats(rows, step);
+      return stats ? { index: index, stats: stats } : null;
+    }).filter(Boolean);
+
+    if (!panels.length) {
+      return section("durations", "Time between phases",
+        "How long the cohort takes to climb a phase.",
+        '<p class="empty">No dated phase starts in this slice.</p>');
+    }
+
+    var cards = panels.map(function (panel) {
+      var stats = panel.stats;
+      var step = stats.step;
+      var enough = stats.total >= MIN_AT_RISK && stats.advanced > 0;
+      var body = enough
+        ? '<div class="chart" id="duration-chart-' + panel.index + '"></div>'
+        : '<p class="empty">' +
+          (stats.advanced === 0
+            ? "No drug in this slice has made this move yet, so there is nothing to time."
+            : "Only " + stats.total + " drug" + (stats.total === 1 ? "" : "s") +
+              " reached " + esc(step.from) + " — too few to draw a curve from.") +
+          "</p>";
+
+      var headline = stats.medianMonths !== null
+        ? "Half had moved up within <strong>" + esc(stats.medianMonths) + " months</strong>."
+        : "<strong>No median yet</strong> — fewer than half have made the move while enough drugs " +
+          "were still being followed, so the typical wait cannot be stated honestly.";
+
+      function share(months) {
+        var value = stats.shareBy(months);
+        return value === null
+          ? null
+          : "by " + months + " months <strong>" + Math.round(value * 100) + "%</strong>";
+      }
+      var marks = [share(24), share(48)].filter(Boolean);
+
+      return (
+        '<div class="card"><h3>' + esc(step.from) + " → " + esc(step.to) + "</h3>" +
+        '<p class="card-note">' +
+        esc(stats.total) + " reached " + esc(step.from) + ": " +
+        '<strong>' + esc(stats.advanced) + "</strong> moved up, " +
+        esc(stats.stopped) + " stopped there, " +
+        esc(stats.waiting) + " no move yet" +
+        (stats.waitingMedian !== null
+          ? " (followed a median " + esc(stats.waitingMedian) + " months)"
+          : "") +
+        ".</p>" +
+        body +
+        (enough
+          ? '<p class="card-note" style="margin:10px 0 0">' +
+            (marks.length ? "Advanced " + marks.join("; ") + ". " : "") +
+            headline +
+            " Followed to " + esc(stats.horizon) + " months, where " +
+            esc(stats.atRiskAt(stats.horizon)) + " were still at risk.</p>"
+          : "") +
+        "</div>"
+      );
+    });
+
+    return section(
+      "durations",
+      "Time between phases",
+      "Measured from the first trial start at one phase to the first at the next. Drugs that have " +
+        "not moved yet are counted as still waiting rather than dropped, because a median over only " +
+        "the drugs that moved would quietly ignore everyone slow and flatter the cohort. Curves are " +
+        "cumulative incidence with advancing (solid) and stopping (dashed) as competing outcomes; " +
+        "the row of small figures under each axis is how many drugs were still at risk at that month. " +
+        "A stopped programme leaves the count at its last trial update, the nearest thing to a " +
+        "discontinuation date the registry gives.",
+      '<div class="grid cols-3">' + cards.join("") + "</div>"
+    );
+  }
+
+  function drawDuration(container, stats) {
+    if (!container || !stats) return;
+    var width = Math.max(260, container.clientWidth);
+    var height = 190;
+    var pad = { top: 12, right: 12, bottom: 42, left: 34 };
+    var plotW = width - pad.left - pad.right;
+    var plotH = height - pad.top - pad.bottom;
+    // end the axis at the horizon rather than past it, so no tick invites a
+    // reading from a stretch of follow-up the curve deliberately stops short of
+    var span = Math.max(12, stats.maxMonths);
+
+    function x(months) { return pad.left + (months / span) * plotW; }
+    function y(share) { return pad.top + plotH - share * plotH; }
+
+    function stepPath(key) {
+      var d = [];
+      var last = 0;
+      stats.curve.forEach(function (point, i) {
+        var px = x(point.months);
+        if (!i) { d.push("M" + px.toFixed(1) + " " + y(0).toFixed(1)); }
+        else { d.push("L" + px.toFixed(1) + " " + y(last).toFixed(1)); }
+        d.push("L" + px.toFixed(1) + " " + y(point[key]).toFixed(1));
+        last = point[key];
+      });
+      d.push("L" + x(span).toFixed(1) + " " + y(last).toFixed(1));
+      return d.join(" ");
+    }
+
+    var svg = ['<svg class="chart-svg" viewBox="0 0 ' + width + " " + height + '" role="img" ' +
+      'aria-label="Share of drugs that advanced from ' + esc(stats.step.from) + ' to ' + esc(stats.step.to) + ' over time">'];
+
+    [0, 0.25, 0.5, 0.75, 1].forEach(function (share) {
+      svg.push('<line class="grid-line" x1="' + pad.left + '" x2="' + (pad.left + plotW) +
+        '" y1="' + y(share) + '" y2="' + y(share) + '"></line>');
+      svg.push('<text x="' + (pad.left - 6) + '" y="' + (y(share) + 4) + '" text-anchor="end">' +
+        Math.round(share * 100) + "%</text>");
+    });
+
+    svg.push('<path class="series-line" d="' + stepPath("stopped") + '" stroke="var(--critical)" stroke-dasharray="3 3"></path>');
+    svg.push('<path class="series-line" d="' + stepPath("advanced") + '" stroke="var(--series-1)"></path>');
+
+    // keep to roughly six ticks however long the follow-up runs
+    var tickStep = 12;
+    while (span / tickStep > 6) tickStep += 12;
+    for (var m = 0; m <= span; m += tickStep) {
+      svg.push('<text x="' + x(m) + '" y="' + (pad.top + plotH + 15) + '" text-anchor="middle">' + m + "</text>");
+      svg.push('<text class="at-risk" x="' + x(m) + '" y="' + (pad.top + plotH + 31) +
+        '" text-anchor="middle">' + stats.atRiskAt(m) + "</text>");
+    }
+    svg.push('<line class="axis-line" x1="' + pad.left + '" x2="' + (pad.left + plotW) +
+      '" y1="' + y(0) + '" y2="' + y(0) + '"></line>');
+    svg.push("</svg>");
+    container.innerHTML = svg.join("");
+  }
+
+  function drawDurations(rows) {
+    DURATION_STEPS.forEach(function (step, index) {
+      var stats = durationStats(rows, step);
+      if (stats && stats.total >= MIN_AT_RISK && stats.advanced > 0) {
+        drawDuration(document.getElementById("duration-chart-" + index), stats);
+      }
+    });
+  }
+
   function renderTimeline(rows) {
     var data = timelineSeries(rows);
     var plotted = {};
@@ -1764,9 +2051,11 @@
   // -------------------------------------------------------------- render
 
   var timelineData = null;
+  var currentRows = null; // the filtered slice, kept so a resize can redraw without re-filtering
 
   function render() {
     var rows = D.drugs.filter(matches);
+    currentRows = rows;
     timelineData = timelineSeries(rows);
     root.innerHTML =
       renderMasthead() +
@@ -1774,6 +2063,7 @@
       renderCatalysts() +
       renderFilters(rows) +
       renderFunnel(rows) +
+      renderDurations(rows) +
       renderTimeline(rows) +
       renderBreakdowns(rows) +
       renderTable(rows) +
@@ -1787,6 +2077,7 @@
       ".</footer>";
 
     drawTimeline(document.getElementById("timeline-chart"), timelineData);
+    drawDurations(rows);
     wire(rows);
     buildToc();
     writeHash();
@@ -1903,6 +2194,7 @@
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function () {
       drawTimeline(document.getElementById("timeline-chart"), timelineData);
+      drawDurations(currentRows || []);
     }, 150);
   });
 })();
