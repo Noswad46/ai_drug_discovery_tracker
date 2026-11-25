@@ -221,11 +221,14 @@ section { margin-top: 34px; scroll-margin-top: 74px; }
 .card h3 { font-size: 14px; margin: 0 0 2px; font-weight: 600; }
 .card .card-note { margin: 0 0 16px; color: var(--muted); font-size: 12.5px; }
 
+/* min() keeps the track from demanding more width than the screen has: a bare
+   minmax(430px, 1fr) is a floor, so on a 390px phone it pushed the whole page
+   into a horizontal scroll rather than dropping to one column. */
 .grid { display: grid; gap: 14px; align-items: start; }
-.grid.cols-2 { grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); }
-.grid.cols-3 { grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+.grid.cols-2 { grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr)); }
+.grid.cols-3 { grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr)); }
 /* two wide columns: long category labels need the room */
-.grid.cols-wide { grid-template-columns: repeat(auto-fit, minmax(430px, 1fr)); }
+.grid.cols-wide { grid-template-columns: repeat(auto-fit, minmax(min(430px, 100%), 1fr)); }
 
 /* ------------------------------------------------------------ stat tiles */
 
@@ -438,6 +441,18 @@ tbody tr.detail-row > td { background: var(--surface-sunken); }
 .tag.up { color: var(--good-text); }
 .tag.down { color: var(--critical); }
 .tag.flagwarn { color: var(--ink-2); border-color: var(--warning); }
+
+/* ----------------------------------------------------------- stop reasons */
+
+.stop { border-top: 1px solid var(--grid); padding: 10px 0; }
+.stop:first-of-type { border-top: 0; padding-top: 0; }
+.stop-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; font-size: 13px; }
+.stop-why {
+  margin: 6px 0 0; padding-left: 10px;
+  border-left: 2px solid var(--grid);
+  color: var(--ink-2); font-size: 12.5px;
+}
+.stop-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin-top: 3px; }
 
 .empty { color: var(--muted); font-size: 13px; }
 

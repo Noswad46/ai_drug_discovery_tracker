@@ -1250,6 +1250,114 @@
     });
   }
 
+  // ---------------------------------------------------------- stop reasons
+
+  /* ClinicalTrials.gov asks sponsors why a trial ended early, and the answers
+     are the most revealing text in the dataset — for a cohort whose pitch is
+     better attrition, whether these stopped on data or on a portfolio review
+     is the whole question.
+
+     Two things make a naive listing misleading. A stopped trial is not a dead
+     drug: five of the drugs here are still active or already approved, and
+     their trials ended for funding, manufacturing or business reasons. And at
+     least one reason is outright good news — EVX-02's trial closed early
+     because interim results were promising enough to jump to a second
+     generation. So programme-level stops are separated from trial-level ones,
+     and every reason is quoted verbatim rather than summarised. */
+
+  var STOP_KINDS = [
+    // order matters: a "sponsor decision ... not related to safety" must not
+    // be read as a safety signal, and a data-driven stop must not be filed
+    // under business just because a sponsor made the call
+    { tag: "on the data", test: /therapeutic index|risk[- ]benefit|lack of efficacy|toxicity|adverse event/i },
+    { tag: "operational", test: /manufactur|funding|did not start|before enrolling its first/i },
+    { tag: "business or strategic", test: /business reason|(sponsor|company)\s+(decision|decided)|no longer relevant/i }
+  ];
+
+  function stopKind(text) {
+    var hit = STOP_KINDS.filter(function (kind) { return kind.test.test(text); })[0];
+    return hit ? hit.tag : null;
+  }
+
+  function stopEntries(rows) {
+    var programme = [];
+    var trialOnly = [];
+    rows.forEach(function (drug) {
+      var reasons = (drug.trials || []).filter(function (t) { return t.why_stopped; });
+      if (!reasons.length) return;
+      var dead = drug.derived.status === "discontinued" || drug.derived.status === "deprioritised";
+      (dead ? programme : trialOnly).push({ drug: drug, trials: reasons });
+    });
+    return { programme: programme, trialOnly: trialOnly };
+  }
+
+  function stopList(items) {
+    if (!items.length) return '<p class="empty">Nothing in this slice.</p>';
+    // one heading per drug: BioXcel's dexmedetomidine alone accounts for five
+    // stopped trials, and repeating the name five times reads as five drugs
+    return items
+      .map(function (item) {
+        return (
+          '<div class="stop">' +
+          '<div class="stop-head"><strong>' + esc(item.drug.drug_name) + "</strong>" +
+          '<span class="cell-sub">' + esc(item.drug.company) + "</span>" +
+          (item.trials.length > 1
+            ? '<span class="cell-sub">' + esc(item.trials.length) + " stopped trials</span>"
+            : "") +
+          "</div>" +
+          item.trials
+            .map(function (trial) {
+              var kind = stopKind(trial.why_stopped);
+              return (
+                '<blockquote class="stop-why">' +
+                esc(trial.why_stopped) +
+                '<span class="stop-meta">' +
+                (kind ? '<span class="tag">' + esc(kind) + "</span>" : "") +
+                '<a href="' + esc(trial.url) + '" target="_blank" rel="noopener">' + esc(trial.nct_id) + "</a>" +
+                '<span class="cell-sub">' + esc(ctgStatusLabel(trial.overall_status)) + "</span>" +
+                "</span></blockquote>"
+              );
+            })
+            .join("") +
+          "</div>"
+        );
+      })
+      .join("");
+  }
+
+  function renderStops(rows) {
+    var groups = stopEntries(rows);
+    var count = groups.programme.concat(groups.trialOnly).reduce(function (sum, item) {
+      return sum + item.trials.length;
+    }, 0);
+    if (!count) {
+      return section("stops", "Why trials stopped",
+        "What sponsors told ClinicalTrials.gov when a trial ended early.",
+        '<p class="empty">No stopped trials in this slice.</p>');
+    }
+
+    return section(
+      "stops",
+      "Why trials stopped",
+      "What the sponsor told ClinicalTrials.gov when a trial ended early, quoted as written. " +
+        "<strong>A stopped trial is not a failed drug</strong> — most of the trials on the right " +
+        "belong to programmes that are still running or already approved. The tags are read off " +
+        "the wording and are shown next to it so you can check them.",
+      '<div class="grid cols-2">' +
+        '<div class="card"><h3>Programmes recorded as stopped</h3>' +
+        '<p class="card-note">The drug itself is discontinued or deprioritised. ' +
+        "This is the attrition the funnel counts.</p>" +
+        stopList(groups.programme) +
+        "</div>" +
+        '<div class="card"><h3>Trials stopped, programme not</h3>' +
+        '<p class="card-note">A trial ended early while the drug carries on, or had already ' +
+        "been approved. Reading these as failures would overstate the cohort's attrition.</p>" +
+        stopList(groups.trialOnly) +
+        "</div>" +
+        "</div>"
+    );
+  }
+
   function renderTimeline(rows) {
     var data = timelineSeries(rows);
     var plotted = {};
@@ -1432,6 +1540,55 @@
     );
   }
 
+  /* Country is the one dimension a drug can hold several of at once, so this
+     cannot go through groupBy(): a drug counts once per country it has a site
+     in, and the bars deliberately sum to more than the cohort. Folding the
+     tail into "Other" the way the company bars do would be wrong here — the
+     same drug often runs in several small-count countries and would be
+     counted repeatedly inside one bar — so the tail is truncated and said so. */
+  function groupByCountry(rows, limit) {
+    var map = {};
+    rows.forEach(function (drug) {
+      var seen = {};
+      (drug.trials || []).forEach(function (trial) {
+        (trial.countries || []).forEach(function (country) {
+          if (seen[country]) return;
+          seen[country] = true;
+          if (!map[country]) map[country] = [];
+          map[country].push(drug);
+        });
+      });
+    });
+    var entries = Object.keys(map).map(function (key) {
+      return { key: key, rows: map[key] };
+    });
+    entries.sort(function (a, b) {
+      return b.rows.length - a.rows.length || a.key.localeCompare(b.key);
+    });
+    return { entries: limit ? entries.slice(0, limit) : entries, total: entries.length };
+  }
+
+  function countryCard(rows) {
+    var grouped = groupByCountry(rows, 12);
+    if (!grouped.entries.length) {
+      return '<div class="card"><h3>Where the trials run</h3>' +
+        '<p class="empty">No registered trial locations in this slice.</p></div>';
+    }
+    var covered = rows.filter(function (drug) {
+      return (drug.trials || []).some(function (t) { return (t.countries || []).length; });
+    }).length;
+    var hidden = grouped.total - grouped.entries.length;
+    return stackedCard(
+      "Where the trials run",
+      "Countries with a registered site, counted once per drug — so a drug running in ten " +
+        "countries appears in ten bars and these do not sum to the cohort. " +
+        esc(covered) + " of " + esc(rows.length) + " drugs have a location on file" +
+        (hidden ? "; showing the top " + esc(grouped.entries.length) + " of " + esc(grouped.total) + " countries" : "") +
+        ".",
+      grouped.entries
+    );
+  }
+
   function renderBreakdowns(rows) {
     if (!rows.length) {
       return section("breakdowns", "Breakdowns", "No drugs match the current filters.", "");
@@ -1439,7 +1596,8 @@
     return section(
       "breakdowns",
       "Breakdowns",
-      "How AI was used, and where the cohort sits by therapy area, modality and company — each bar split by the phase its drugs have reached.",
+      "How AI was used, and where the cohort sits by therapy area, modality, company and " +
+        "trial geography — each bar split by the phase its drugs have reached.",
       phaseLegend() +
         '<div class="grid cols-wide">' +
         stackedCard(
@@ -1472,6 +1630,7 @@
             11
           )
         ) +
+        countryCard(rows) +
         "</div>"
     );
   }
@@ -2064,6 +2223,7 @@
       renderFilters(rows) +
       renderFunnel(rows) +
       renderDurations(rows) +
+      renderStops(rows) +
       renderTimeline(rows) +
       renderBreakdowns(rows) +
       renderTable(rows) +
