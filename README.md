@@ -12,8 +12,10 @@ one HTML page plus one JS file for the dashboard, free hosting on GitHub Pages.
 
 ```bash
 python3 scripts/refresh.py     # pull live trial data, write a dated snapshot (~2 min, ~140 API calls)
-python3 scripts/build.py       # rebuild the dashboard payload
+python3 scripts/build.py       # rebuild the dashboard payload (publish-safe)
 open site/index.html           # works straight from file://
+
+python3 scripts/build.py --include-review   # same, plus the review queue, for your eyes only
 ```
 
 `refresh.py` is safe to re-run on the same day — it overwrites that day's snapshot and its
@@ -56,13 +58,26 @@ and the row is marked as cached on the page, so one bad call never empties the d
 
 ## Nothing is added automatically
 
-Discovery only ever writes to `data/review-queue.json` and the dashboard's review section.
-To clear an item:
+Discovery only ever writes to `data/review-queue.json`. Clearing the queue is a manual job,
+and it is yours:
 
 * it qualifies → add a row to `seed-list.csv` (and record `"decision": "accepted"` in
   `data/review-decisions.json` so it stops being re-flagged), or
 * it does not → record `"decision": "rejected"` with a note in
   `data/review-decisions.json`.
+
+Three places show you the queue, none of them the published site:
+
+* the **review issue** the weekly Action opens, listing only newly-seen candidates,
+* `python3 scripts/report.py --new-only`, which prints the same list locally, and
+* the dashboard's review section, which appears only after
+  `python3 scripts/build.py --include-review`.
+
+That last build writes `site/data/review.js`, which is gitignored; a plain build deletes it
+again. Candidates are unvetted — publishing them would put unchecked AI-design claims about
+named companies on a public page — so they are kept out of `site/data/dashboard.{js,json}`
+entirely. Both workflows deploy `site/` as committed, so keeping the file out of git is what
+keeps the queue off the web.
 
 Sponsors with more than 80 interventional trials (Lilly, Takeda, BMS, Sumitomo) are not
 swept — their AI assets are tracked by drug code instead, which keeps the queue reviewable.
@@ -132,7 +147,8 @@ scripts/
   common.py                seed parsing, phase scale, shared helpers
   ctgov.py                 ClinicalTrials.gov v2 client (stdlib only, retries, rate limit)
   refresh.py               fetch -> derive -> snapshot -> diff -> changelog -> review queue
-  build.py                 snapshots -> site/data/dashboard.{js,json}
+  build.py                 snapshots -> site/data/dashboard.{js,json}; --include-review
+                           also writes the gitignored site/data/review.js
   report.py                markdown summary for the Action
   selftest.py              unit tests (no network)
 data/

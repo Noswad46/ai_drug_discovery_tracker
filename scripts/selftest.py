@@ -341,5 +341,30 @@ class Flattening(unittest.TestCase):
         self.assertEqual(flat["url"], "https://clinicaltrials.gov/study/NCT06253871")
 
 
+class PublishedPayloadIsClean(unittest.TestCase):
+    """The deployed site is site/ as committed, so these files are the public surface."""
+
+    SITE_DATA = os.path.join(common.ROOT, "site", "data")
+
+    def test_review_candidates_never_reach_the_published_payload(self):
+        """Candidates are unvetted; publishing them would make claims we have not checked."""
+        queue = common.read_json(common.REVIEW_QUEUE_JSON, {}) or {}
+        ncts = [c["nct_id"] for c in queue.get("candidates", []) if c.get("nct_id")]
+        for name in ("dashboard.js", "dashboard.json"):
+            path = os.path.join(self.SITE_DATA, name)
+            if not os.path.exists(path):
+                continue
+            with open(path, "r", encoding="utf-8") as fh:
+                blob = fh.read()
+            self.assertNotIn("review_queue", blob, f"{name} carries the review queue")
+            leaked = [nct for nct in ncts if nct in blob]
+            self.assertEqual(leaked, [], f"{name} names review candidates: {leaked}")
+
+    def test_the_local_review_file_is_not_committed(self):
+        """build.py --include-review writes it; .gitignore has to keep it out of the repo."""
+        with open(os.path.join(common.ROOT, ".gitignore"), encoding="utf-8") as fh:
+            self.assertIn("site/data/review.js", fh.read())
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

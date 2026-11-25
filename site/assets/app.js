@@ -1480,8 +1480,13 @@
 
   // ----------------------------------------------------------- review queue
 
+  /* Candidates are unvetted, so they live outside the published payload: only a
+     local `build.py --include-review` writes the data/review.js that defines
+     this global. On the deployed site it is undefined and the section, along
+     with its contents-rail entry, simply does not exist. */
   function renderReview() {
-    var queue = D.review_queue || { candidates: [] };
+    var queue = window.REVIEW_QUEUE;
+    if (!queue) return "";
     var candidates = queue.candidates || [];
     var skipped = (D.meta.sponsors_skipped || [])
       .map(function (item) {
@@ -1527,7 +1532,8 @@
     return section(
       "review",
       "Possible new entries — manual review",
-      "Interventional trials from tracked companies that are not linked to any drug on the seed list. " +
+      '<span class="local-only">Local only — not published</span> ' +
+        "Interventional trials from tracked companies that are not linked to any drug on the seed list. " +
         "<strong>None of these are counted anywhere else on this page.</strong> Each one has to be checked against the " +
         "inclusion criteria by hand, then either added to seed-list.csv or recorded in data/review-decisions.json so it stops reappearing.",
       '<div class="card"><p class="card-note">' +

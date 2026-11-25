@@ -4,6 +4,11 @@ __pycache__/
 site/_shot.html
 .claude/
 
+# Unvetted manual-review candidates, built only by `build.py --include-review`.
+# Never commit this: both workflows deploy site/ as-is, so a committed copy
+# would be published.
+site/data/review.js
+
 # Local analysis, not part of the tracker
 us-health-spending.ipynb
 us_health_spending_1900_2024.csv

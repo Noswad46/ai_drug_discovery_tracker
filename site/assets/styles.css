@@ -439,6 +439,14 @@ tbody tr.detail-row > td { background: var(--surface-sunken); }
 
 .empty { color: var(--muted); font-size: 13px; }
 
+/* marks a section that only exists in a local build and never ships */
+.local-only {
+  display: inline-block; margin-right: 6px; padding: 1px 7px;
+  border: 1px solid var(--warning); border-radius: 5px;
+  font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--ink-2); white-space: nowrap;
+}
+
 /* --------------------------------------------------------------- methods */
 
 .prose { color: var(--ink-2); font-size: 13.5px; }
