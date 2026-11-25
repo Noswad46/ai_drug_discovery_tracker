@@ -1121,6 +1121,30 @@
     };
   }
 
+  /* Three encodings share one legend above the cards, the way the phase
+     legend sits above the breakdown grid. The benchmark key is drawn upright
+     because that is how it appears on the chart — a vertical cut across the
+     curves, not another series running along with them. */
+  function durationLegend(showBenchmark) {
+    var dashes = function (colour, horizontal) {
+      return "repeating-linear-gradient(" + (horizontal ? "90deg" : "180deg") +
+        "," + colour + " 0 3px,transparent 3px 6px)";
+    };
+    return (
+      '<div class="legend">' +
+      '<span class="key"><span class="line-key" style="background:var(--series-1)"></span>' +
+      "Advanced to the next phase</span>" +
+      '<span class="key"><span class="line-key" style="background:' + dashes("var(--critical)", true) +
+      '"></span>Stopped at this phase</span>' +
+      (showBenchmark
+        ? '<span class="key"><span class="line-key upright" style="background:' + dashes("var(--axis)", false) +
+          '"></span>Median trial length at this phase, all industry</span>'
+        : "") +
+      '<span class="key"><span class="at-risk-key">57</span>Drugs still at risk, printed under the axis</span>' +
+      "</div>"
+    );
+  }
+
   function renderDurations(rows) {
     /* Keep each panel tied to its step index: drawDurations() looks the chart
        containers up by it, so a dropped step must not shift the rest along. */
@@ -1136,6 +1160,10 @@
         "How long the cohort takes to climb a phase.",
         '<p class="empty">No dated phase starts in this slice.</p>');
     }
+
+    var drawable = panels.some(function (panel) {
+      return panel.stats.total >= MIN_AT_RISK && panel.stats.advanced > 0;
+    });
 
     var cards = panels.map(function (panel) {
       var stats = panel.stats;
@@ -1196,23 +1224,25 @@
     return section(
       "durations",
       "Time between phases",
-      "Measured from the first trial start at one phase to the first at the next. Drugs that have " +
-        "not moved yet are counted as still waiting rather than dropped, because a median over only " +
-        "the drugs that moved would quietly ignore everyone slow and flatter the cohort. Curves are " +
-        "cumulative incidence with advancing (solid) and stopping (dashed) as competing outcomes; " +
-        "the row of small figures under each axis is how many drugs were still at risk at that month. " +
-        "A stopped programme leaves the count at its last trial update, the nearest thing to a " +
+      // the legend carries the encoding now, so this says only what it cannot
+      "Measured from the first trial start at one phase to the first at the next, as cumulative " +
+        "incidence with advancing and stopping as competing outcomes. Drugs that have not moved " +
+        "yet are counted as still waiting rather than dropped, because a median over only the " +
+        "drugs that moved would quietly ignore everyone slow and flatter the cohort; a stopped " +
+        "programme leaves the count at its last trial update, the nearest thing to a " +
         "discontinuation date the registry gives." +
         (durationSource
-          ? " The vertical line is the median length of a single trial at that phase across all " +
-            "industry — <strong>not</strong> a transition time, which is always longer, so it marks " +
-            "the floor rather than the thing to beat. " +
+          ? " The benchmark is how long one trial at that phase runs, <strong>not</strong> a " +
+            "transition time, which is always longer — so it marks the floor, not the thing to " +
+            "beat. " +
             (durationSource.url
               ? '<a href="' + esc(durationSource.url) + '" target="_blank" rel="noopener">' +
                 esc(durationSource.label) + "</a>."
               : esc(durationSource.label) + ".")
           : ""),
-      '<div class="grid cols-3">' + cards.join("") + "</div>"
+      // no charts in this slice means nothing for a key to describe
+      (drawable ? durationLegend(!!durationSource) : "") +
+        '<div class="grid cols-3">' + cards.join("") + "</div>"
     );
   }
 

@@ -306,6 +306,10 @@ section { margin-top: 34px; scroll-margin-top: 74px; }
 .legend .key { display: inline-flex; align-items: center; gap: 6px; }
 .legend .swatch { width: 11px; height: 11px; border-radius: 3px; flex: none; }
 .legend .line-key { width: 16px; height: 2px; border-radius: 1px; flex: none; }
+/* the benchmark cuts across the curves, so its key stands upright like it does */
+.legend .line-key.upright { width: 2px; height: 12px; }
+/* mirrors the at-risk row under the chart axis */
+.legend .at-risk-key { font-size: 9.5px; color: var(--axis); flex: none; }
 
 .bars { display: flex; flex-direction: column; gap: 10px; }
 .bar-row { display: grid; grid-template-columns: minmax(92px, 32%) 1fr; gap: 12px; align-items: center; }
