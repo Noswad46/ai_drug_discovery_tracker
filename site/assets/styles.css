@@ -340,6 +340,10 @@ section { margin-top: 34px; scroll-margin-top: 74px; }
 .chart-svg .hover-line { stroke: var(--axis); stroke-width: 1; }
 /* the at-risk row is a denominator, not a reading: recessive by design */
 .chart-svg .at-risk { font-size: 9.5px; fill: var(--axis); }
+/* a published floor, not a target: hairline and unsaturated so it never reads
+   as one of the measured series */
+.chart-svg .benchmark-line { stroke: var(--axis); stroke-width: 1; stroke-dasharray: 2 4; }
+.chart-svg .benchmark-label { font-size: 9.5px; fill: var(--axis); }
 
 .tooltip {
   position: fixed; z-index: 60; pointer-events: none;

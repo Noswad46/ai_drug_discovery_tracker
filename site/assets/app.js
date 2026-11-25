@@ -986,6 +986,18 @@
   ];
   var MIN_AT_RISK = 5; // below this a curve is noise dressed up as a finding
 
+  /* The published comparator is how long a single trial in a phase runs, not
+     how long a programme takes to reach the next one. A drug has to finish the
+     phase and then be taken forward, so the benchmark sits underneath the
+     transition rather than beside it: before that line almost nothing should
+     have moved, and the curve only becomes interesting after it. Drawn as a
+     floor, labelled as one. */
+  function durationBenchmark(stage) {
+    return ((D.benchmarks && D.benchmarks.phase_duration) || []).filter(function (entry) {
+      return entry.stage === stage;
+    })[0] || null;
+  }
+
   function parseLoose(value) {
     if (!value) return null;
     var bits = String(value).split("-");
@@ -1117,6 +1129,8 @@
       return stats ? { index: index, stats: stats } : null;
     }).filter(Boolean);
 
+    var durationSource = (D.benchmarks && D.benchmarks.sources && D.benchmarks.sources.phase_duration) || null;
+
     if (!panels.length) {
       return section("durations", "Time between phases",
         "How long the cohort takes to climb a phase.",
@@ -1126,6 +1140,7 @@
     var cards = panels.map(function (panel) {
       var stats = panel.stats;
       var step = stats.step;
+      var benchmark = durationBenchmark(step.from);
       var enough = stats.total >= MIN_AT_RISK && stats.advanced > 0;
       var body = enough
         ? '<div class="chart" id="duration-chart-' + panel.index + '"></div>'
@@ -1165,6 +1180,12 @@
           ? '<p class="card-note" style="margin:10px 0 0">' +
             (marks.length ? "Advanced " + marks.join("; ") + ". " : "") +
             headline +
+            (benchmark
+              ? " A " + esc(step.from) + " trial alone runs a median <strong>" +
+                esc(benchmark.median_years) + " years</strong> across all industry, marked on the " +
+                "chart — the transition cannot be quicker than the trial, so read the curve from " +
+                "there rather than from zero."
+              : "") +
             " Followed to " + esc(stats.horizon) + " months, where " +
             esc(stats.atRiskAt(stats.horizon)) + " were still at risk.</p>"
           : "") +
@@ -1181,7 +1202,16 @@
         "cumulative incidence with advancing (solid) and stopping (dashed) as competing outcomes; " +
         "the row of small figures under each axis is how many drugs were still at risk at that month. " +
         "A stopped programme leaves the count at its last trial update, the nearest thing to a " +
-        "discontinuation date the registry gives.",
+        "discontinuation date the registry gives." +
+        (durationSource
+          ? " The vertical line is the median length of a single trial at that phase across all " +
+            "industry — <strong>not</strong> a transition time, which is always longer, so it marks " +
+            "the floor rather than the thing to beat. " +
+            (durationSource.url
+              ? '<a href="' + esc(durationSource.url) + '" target="_blank" rel="noopener">' +
+                esc(durationSource.label) + "</a>."
+              : esc(durationSource.label) + ".")
+          : ""),
       '<div class="grid cols-3">' + cards.join("") + "</div>"
     );
   }
@@ -1223,6 +1253,14 @@
       svg.push('<text x="' + (pad.left - 6) + '" y="' + (y(share) + 4) + '" text-anchor="end">' +
         Math.round(share * 100) + "%</text>");
     });
+
+    var mark = durationBenchmark(stats.step.from);
+    if (mark && mark.median_months <= span) {
+      svg.push('<line class="benchmark-line" x1="' + x(mark.median_months) + '" x2="' + x(mark.median_months) +
+        '" y1="' + pad.top + '" y2="' + y(0) + '"></line>');
+      svg.push('<text class="benchmark-label" x="' + (x(mark.median_months) + 4) + '" y="' + (pad.top + 9) + '">' +
+        esc(mark.median_years) + " yr</text>");
+    }
 
     svg.push('<path class="series-line" d="' + stepPath("stopped") + '" stroke="var(--critical)" stroke-dasharray="3 3"></path>');
     svg.push('<path class="series-line" d="' + stepPath("advanced") + '" stroke="var(--series-1)"></path>');

@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generated_at_utc": "2026-11-25T18:43:52+00:00",
+  "generated_at_utc": "2026-11-25T19:30:51+00:00",
   "last_refresh": "2026-11-25",
   "previous_refresh": "2026-11-23",
   "refresh_mode": "live",
@@ -135,7 +135,33 @@
     "ai_range": null
    }
   ],
+  "_phase_duration_note": "These are how long a single trial in each phase runs, start to completion. They are NOT transition times, which is what the duration view measures - a programme has to get through the phase AND decide to go on before the next trial starts. So treat each figure as the floor under the matching transition, not an equivalent.",
+  "phase_duration": [
+   {
+    "stage": "Phase 1",
+    "label": "Median Phase 1 trial",
+    "median_months": 19.2,
+    "median_years": 1.6
+   },
+   {
+    "stage": "Phase 2",
+    "label": "Median Phase 2 trial",
+    "median_months": 34.8,
+    "median_years": 2.9
+   },
+   {
+    "stage": "Phase 3",
+    "label": "Median Phase 3 trial",
+    "median_months": 45.6,
+    "median_years": 3.8
+   }
+  ],
   "sources": {
+   "phase_duration": {
+    "label": "Median trial duration, all industry (Wong, Siah and Lo 2019)",
+    "citation": "Wong CH, Siah KW, Lo AW, 'Estimation of clinical trial success rates and related parameters', Biostatistics 20(2):273-286, 2019. Citeline/Informa (Trialtrove and Pharmaprojects), 406,038 trial entries on 21,143 compounds, January 2000 to October 2015. Median trial durations 1.6, 2.9 and 3.8 years for Phases 1, 2 and 3.",
+    "url": "https://doi.org/10.1093/biostatistics/kxx069"
+   },
    "industry": {
     "label": "Industry baseline (2011-2020)",
     "citation": "BIO, Informa Pharma Intelligence and QLS Advisors, Clinical Development Success Rates 2011-2020. Phase 1 52.0%, Phase 2 28.9%, Phase 3 57.8%, filing 90.6%.",

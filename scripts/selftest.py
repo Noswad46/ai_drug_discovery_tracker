@@ -341,6 +341,34 @@ class Flattening(unittest.TestCase):
         self.assertEqual(flat["url"], "https://clinicaltrials.gov/study/NCT06253871")
 
 
+class Benchmarks(unittest.TestCase):
+    """Reference numbers are rendered as fact on a public page, so they need a source."""
+
+    def setUp(self):
+        self.raw = common.read_json(common.BENCHMARKS_JSON, {}) or {}
+
+    def test_duration_benchmarks_are_cited_and_consistent(self):
+        entries = self.raw.get("phase_duration") or []
+        self.assertTrue(entries, "no phase_duration benchmarks")
+        source = (self.raw.get("sources") or {}).get("phase_duration")
+        self.assertTrue(source and source.get("citation"), "phase_duration needs a citation")
+        self.assertTrue(source.get("url"), "phase_duration needs a URL")
+        for entry in entries:
+            self.assertIn(entry.get("stage"), common.PHASE_SCALE, entry.get("stage"))
+            self.assertGreater(entry.get("median_months", 0), 0)
+            # the two spellings of the same figure must not drift apart
+            self.assertAlmostEqual(
+                entry["median_months"], entry["median_years"] * 12, places=1,
+                msg=f"{entry['stage']}: months and years disagree",
+            )
+
+    def test_success_benchmarks_keep_their_sources(self):
+        self.assertTrue(self.raw.get("phase_success"))
+        for key in ("industry", "ai"):
+            source = (self.raw.get("sources") or {}).get(key)
+            self.assertTrue(source and source.get("citation"), f"{key} lost its citation")
+
+
 class PublishedPayloadIsClean(unittest.TestCase):
     """The deployed site is site/ as committed, so these files are the public surface."""
 
