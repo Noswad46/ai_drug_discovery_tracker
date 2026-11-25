@@ -16,6 +16,7 @@ python3 scripts/build.py       # rebuild the dashboard payload (publish-safe)
 open site/index.html           # works straight from file://
 
 python3 scripts/build.py --include-review   # same, plus the review queue, for your eyes only
+python3 scripts/verify.py                   # what the last refresh settles of the VERIFY backlog
 ```
 
 `refresh.py` is safe to re-run on the same day — it overwrites that day's snapshot and its
@@ -150,6 +151,8 @@ scripts/
   build.py                 snapshots -> site/data/dashboard.{js,json}; --include-review
                            also writes the gitignored site/data/review.js
   report.py                markdown summary for the Action
+  verify.py                triages the VERIFY backlog against the last refresh;
+                           --apply clears only the rows the registry settles
   selftest.py              unit tests (no network)
 data/
   snapshots/<date>.json    one file per refresh — the history the timeline is built from

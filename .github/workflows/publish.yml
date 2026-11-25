@@ -21,19 +21,78 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  # Upload and deploy are deliberately separate jobs. Run in one job, the
+  # deploy step can ask for the artifact milliseconds after the upload call
+  # returns and be told "Found 0 artifact(s)" — the artifact API has not caught
+  # up yet. That silently stranded the 2026-11-25 publish on the previous
+  # build. The job boundary gives the API time, and refresh.yml is split the
+  # same way, which is why it has never hit this.
+  build:
     # Opt-in: set the repository variable PUBLISH_PAGES=true once Pages is
     # configured to build from GitHub Actions.
     if: vars.PUBLISH_PAGES == 'true'
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # A green deploy is not proof the page is serving. Check what the live
+      # URL actually returns, and fail loudly if the manual-review queue ever
+      # reaches it — that payload is meant to stay off the public site.
+      - name: Smoke-test the published page
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          payload="${PAGE_URL%/}/data/dashboard.json"
+          for attempt in 1 2 3 4 5; do
+            code=$(curl -fsS -o /tmp/live.json -w '%{http_code}' "$payload") && break
+            echo "attempt $attempt: not serving yet (${code:-no response}), waiting for the CDN"
+            sleep 10
+          done
+          test -s /tmp/live.json || { echo "::error::$payload never returned a body"; exit 1; }
+          python3 - <<'PY'
+          import json, sys
+          d = json.load(open("/tmp/live.json"))
+          if "review_queue" in d:
+              sys.exit("::error::the published payload carries the manual-review queue")
+          print(f"live: {len(d['drugs'])} drugs, refreshed {d['meta']['last_refresh']}")
+          PY
+
+  # Without this a failed publish leaves a stale public page and says nothing.
+  notify:
+    needs: [build, deploy]
+    if: failure() && vars.PUBLISH_PAGES == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Open or update a deploy-failure issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh label create deploy-failure --color B60205 \
+            --description "A Pages deploy failed and the live site may be stale" 2>/dev/null || true
+          body="The Publish site workflow failed, so the live page is still serving the previous build. Run: $RUN_URL"
+          existing=$(gh issue list --label deploy-failure --state open --limit 1 \
+            --json number --jq '.[0].number' 2>/dev/null || true)
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+          else
+            gh issue create --title "Publish failed $(date -u +%Y-%m-%d)" \
+              --body "$body" --label deploy-failure
+          fi

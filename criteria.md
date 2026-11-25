@@ -1,6 +1,6 @@
 # AI-designed drugs seed list: inclusion criteria
 
-Companion to `seed-list.csv`. Last checked: 19 November 2026.
+Companion to `seed-list.csv`. Last checked: 25 November 2026.
 
 ## What counts as "AI-designed"
 
@@ -57,8 +57,8 @@ Flag uncertain entries instead of dropping them: the `status` or `ai_role` notes
 ## Known gaps
 
 - The ASCO and Medspark totals (117 to ~175) are larger than this list because they include many Chinese and undisclosed-code assets whose AI claims could not be checked. Treat this seed list as the *verifiable core*, and grow it from tracker updates.
-- **NCT IDs are sparse.** ClinicalTrials.gov blocks automated lookups from the environment this list was built in, so only IDs confirmed from press releases or trackers are filled. Blank `nct_ids` means "not yet verified", not "no trial". The first dashboard refresh should query the ClinicalTrials.gov API (v2, `query.intr=<drug code>`) for every row.
-- **32 rows have status `unclear`**, mostly smaller companies or older Insilico/Exscientia assets whose latest phase was not confirmed today. They carry a `VERIFY` note.
+- **Seed `nct_ids` are sparse, but the refresh fills the gap.** Only IDs confirmed from press releases or trackers are typed into the seed file; every refresh then queries the ClinicalTrials.gov v2 API for each drug's codes and links what it finds, so a blank `nct_ids` cell does not mean the drug has no trials on the page. Three drugs still resolve to no trial at all, which usually means they are registered outside ClinicalTrials.gov (CTR20 in China, JapicCTI in Japan).
+- **18 rows carry a `VERIFY` note.** `scripts/verify.py` sorts them by what is actually blocking: five where ClinicalTrials.gov reports a higher phase than the seed list and a human has to confirm which is right, eight asking something a registry cannot answer (an undisclosed target, a filing, whether a company still backs a programme), three with no trials found, and two whose trials give no conclusive status.
 - **Edge cases kept but tagged** so the dashboard can filter them: AI repurposing of known molecules (baricitinib, REC-4881, REC-994, REC-2282, BXCL501), physics-based computational design (Schrödinger, Nimbus, Relay, Structure), and algorithmic neoantigen vaccines (EVX-01, TG4050, mRNA-4157).
 
 ## Watchlist (not yet clinical, likely to enter soon)

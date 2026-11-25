@@ -103,3 +103,50 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # Same guard as publish.yml: confirm the page is really serving, and
+      # never let the manual-review queue reach it.
+      - name: Smoke-test the published page
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          payload="${PAGE_URL%/}/data/dashboard.json"
+          for attempt in 1 2 3 4 5; do
+            code=$(curl -fsS -o /tmp/live.json -w '%{http_code}' "$payload") && break
+            echo "attempt $attempt: not serving yet (${code:-no response}), waiting for the CDN"
+            sleep 10
+          done
+          test -s /tmp/live.json || { echo "::error::$payload never returned a body"; exit 1; }
+          python3 - <<'PY'
+          import json, sys
+          d = json.load(open("/tmp/live.json"))
+          if "review_queue" in d:
+              sys.exit("::error::the published payload carries the manual-review queue")
+          print(f"live: {len(d['drugs'])} drugs, refreshed {d['meta']['last_refresh']}")
+          PY
+
+  # A silent refresh or deploy failure means stale public data, so say so.
+  notify:
+    needs: [refresh, deploy]
+    if: failure()
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Open or update a refresh-failure issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh label create refresh-failure --color B60205 \
+            --description "A scheduled refresh or its deploy failed" 2>/dev/null || true
+          body="The Refresh tracker workflow failed, so the tracker data or the live page may be stale. Run: $RUN_URL"
+          existing=$(gh issue list --label refresh-failure --state open --limit 1 \
+            --json number --jq '.[0].number' 2>/dev/null || true)
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+          else
+            gh issue create --title "Refresh failed $(date -u +%Y-%m-%d)" \
+              --body "$body" --label refresh-failure
+          fi
