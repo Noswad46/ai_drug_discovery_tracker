@@ -1,3 +1,168 @@
 {
-  "_note": "Manual verdicts on items from data/review-queue.json, so a rejected trial stops coming back every week. Add an entry per NCT ID: {\"decision\": \"accepted\" | \"rejected\", \"note\": \"why\", \"date\": \"YYYY-MM-DD\"}. 'accepted' means you also added a row to seed-list.csv."
+  "_note": "Manual verdicts on items from data/review-queue.json, so a rejected trial stops coming back every week. Add an entry per NCT ID: {\"decision\": \"accepted\" | \"rejected\", \"note\": \"why\", \"date\": \"YYYY-MM-DD\"}. 'accepted' means you also added a row to seed-list.csv.",
+  "NCT07932041": {
+    "decision": "accepted",
+    "note": "ISM9528 — added to seed-list.csv",
+    "date": "2026-11-25"
+  },
+  "NCT07108894": {
+    "decision": "accepted",
+    "note": "ABCL575 — added to seed-list.csv",
+    "date": "2026-11-25"
+  },
+  "NCT07260877": {
+    "decision": "accepted",
+    "note": "VENT-03 — added to seed-list.csv",
+    "date": "2026-11-25"
+  },
+  "NCT05759949": {
+    "decision": "accepted",
+    "note": "RLY-5836 — added to seed-list.csv",
+    "date": "2026-11-25"
+  },
+  "NCT06132503": {
+    "decision": "accepted",
+    "note": "LP-284 — added to seed-list.csv",
+    "date": "2026-11-25"
+  },
+  "NCT04455503": {
+    "decision": "accepted",
+    "note": "EVX-02 — added to seed-list.csv",
+    "date": "2026-11-25"
+  },
+  "NCT03194217": {
+    "decision": "accepted",
+    "note": "bavisant (BEN-2001) — added to seed-list.csv",
+    "date": "2026-11-25"
+  },
+  "NCT03910660": {
+    "decision": "accepted",
+    "note": "talabostat (BXCL701) — added to seed-list.csv",
+    "date": "2026-11-25"
+  },
+  "NCT04123574": {
+    "decision": "accepted",
+    "note": "talabostat (BXCL701) — second trial on the new row",
+    "date": "2026-11-25"
+  },
+  "NCT05558982": {
+    "decision": "accepted",
+    "note": "talabostat (BXCL701) — investigator-initiated trial on the new row",
+    "date": "2026-11-25"
+  },
+  "NCT01588522": {
+    "decision": "accepted",
+    "note": "BPM31543 — added to seed-list.csv",
+    "date": "2026-11-25"
+  },
+  "NCT01957735": {
+    "decision": "accepted",
+    "note": "same molecule as BPM31510 (ubidecarenone), added as alt code BP31510",
+    "date": "2026-11-25"
+  },
+  "NCT01251562": {
+    "decision": "accepted",
+    "note": "same molecule as BPM31510 (ubidecarenone), added as alt code C31510",
+    "date": "2026-11-25"
+  },
+  "NCT00604890": {
+    "decision": "accepted",
+    "note": "same molecule as BPM31510 (ubidecarenone), added as alt code API 31510",
+    "date": "2026-11-25"
+  },
+  "NCT07687875": {
+    "decision": "rejected",
+    "note": "BT-001 — conventional oncolytic vaccinia; Transgene is tracked only for TG4050 (NEC AI neoantigen selection)",
+    "date": "2026-11-25"
+  },
+  "NCT04725331": {
+    "decision": "rejected",
+    "note": "BT-001 — conventional oncolytic vaccinia, as above",
+    "date": "2026-11-25"
+  },
+  "NCT05788926": {
+    "decision": "rejected",
+    "note": "TG6050 — conventional armed oncolytic virus, no AI claim",
+    "date": "2026-11-25"
+  },
+  "NCT03260023": {
+    "decision": "rejected",
+    "note": "TG4001 — conventional HPV16 therapeutic vaccine, no AI claim",
+    "date": "2026-11-25"
+  },
+  "NCT02823990": {
+    "decision": "rejected",
+    "note": "TG4010 — conventional MVA-MUC1-IL2 vaccine, no AI claim",
+    "date": "2026-11-25"
+  },
+  "NCT01394939": {
+    "decision": "rejected",
+    "note": "JX-594 (Pexa-Vec, Jennerex) — conventional oncolytic virus; matched only through Transgene",
+    "date": "2026-11-25"
+  },
+  "NCT06308575": {
+    "decision": "rejected",
+    "note": "rivoceranib — conventional VEGFR2 TKI (apatinib); Elevar is tracked only for lirafugratinib, which Relay designed",
+    "date": "2026-11-25"
+  },
+  "NCT04119453": {
+    "decision": "rejected",
+    "note": "rivoceranib — conventional VEGFR2 TKI, as above",
+    "date": "2026-11-25"
+  },
+  "NCT04073615": {
+    "decision": "rejected",
+    "note": "rivoceranib — conventional VEGFR2 TKI, as above",
+    "date": "2026-11-25"
+  },
+  "NCT05668741": {
+    "decision": "rejected",
+    "note": "VX-522 — Vertex CFTR mRNA; conventional mRNA design, and Vertex is not tracked",
+    "date": "2026-11-25"
+  },
+  "NCT03643107": {
+    "decision": "rejected",
+    "note": "irofulven + DRP — Allarity's predictor is patient stratification on a conventional drug, explicitly excluded by criteria.md; matched only because irofulven is an acylfulvene like LP-184",
+    "date": "2026-11-25"
+  },
+  "NCT03810742": {
+    "decision": "rejected",
+    "note": "nal-IRI + TAS-102 — conventional liposomal irinotecan, no AI claim",
+    "date": "2026-11-25"
+  },
+  "NCT07725380": {
+    "decision": "rejected",
+    "note": "domatinostat + sirolimus — investigator-initiated at Moffitt; conventional molecules, Healx only a collaborator",
+    "date": "2026-11-25"
+  },
+  "NCT06334419": {
+    "decision": "rejected",
+    "note": "gaboxadol in Fragile X — investigator-initiated; gaboxadol is a 1980s GABA-A agonist, not AI-selected",
+    "date": "2026-11-25"
+  },
+  "NCT03694275": {
+    "decision": "rejected",
+    "note": "soticlestat (TAK-935) — conventional Takeda/Ovid CH24H inhibitor; Healx is only a collaborator and Takeda is tracked solely for zasocitinib",
+    "date": "2026-11-25"
+  },
+  "NCT03650452": {
+    "decision": "rejected",
+    "note": "soticlestat (TAK-935) — as above",
+    "date": "2026-11-25"
+  },
+  "NCT03166215": {
+    "decision": "rejected",
+    "note": "soticlestat (TAK-935) — as above",
+    "date": "2026-11-25"
+  },
+  "NCT03882918": {
+    "decision": "rejected",
+    "note": "OV101 (gaboxadol) in Angelman — Healx AI is the sponsor, but gaboxadol is an in-licensed 1980s molecule and the Angelman programme was Ovid's from 2016; criteria.md excludes in-licensed assets an AI company did not design. Revisit if Healx states Healnet nominated it",
+    "date": "2026-11-25"
+  },
+  "NCT02996305": {
+    "decision": "rejected",
+    "note": "OV101 (gaboxadol) in Angelman (STARS) — as above",
+    "date": "2026-11-25"
+  }
 }

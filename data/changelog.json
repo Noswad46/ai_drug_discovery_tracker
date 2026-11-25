@@ -1,5 +1,134 @@
 [
   {
+    "date": "2026-11-25",
+    "generated_at_utc": "2026-11-25T17:00:11+00:00",
+    "previous_snapshot": "2026-11-23",
+    "mode": "live",
+    "totals": {
+      "drugs": 76,
+      "trials": 181,
+      "drugs_with_trials": 67,
+      "candidates_pending": 3
+    },
+    "change_count": 15,
+    "changes": [
+      {
+        "type": "trial_status_change",
+        "drug": "dexmedetomidine sublingual",
+        "key": "dexmedetomidine-sublingual",
+        "company": "BioXcel Therapeutics",
+        "nct_id": "NCT05025605",
+        "from": "RECRUITING",
+        "to": "ACTIVE_NOT_RECRUITING",
+        "detail": "NCT05025605: RECRUITING -> ACTIVE_NOT_RECRUITING"
+      },
+      {
+        "type": "trial_added",
+        "drug": "BPM31510",
+        "key": "bpm31510",
+        "company": "BPGbio",
+        "nct_id": "NCT00605709",
+        "detail": "NCT00605709 linked (WITHDRAWN)"
+      },
+      {
+        "type": "trial_added",
+        "drug": "BPM31510",
+        "key": "bpm31510",
+        "company": "BPGbio",
+        "nct_id": "NCT00604890",
+        "detail": "NCT00604890 linked (COMPLETED)"
+      },
+      {
+        "type": "trial_added",
+        "drug": "BPM31510",
+        "key": "bpm31510",
+        "company": "BPGbio",
+        "nct_id": "NCT00652080",
+        "detail": "NCT00652080 linked (COMPLETED)"
+      },
+      {
+        "type": "trial_added",
+        "drug": "BPM31510",
+        "key": "bpm31510",
+        "company": "BPGbio",
+        "nct_id": "NCT01251562",
+        "detail": "NCT01251562 linked (COMPLETED)"
+      },
+      {
+        "type": "trial_added",
+        "drug": "BPM31510",
+        "key": "bpm31510",
+        "company": "BPGbio",
+        "nct_id": "NCT01957735",
+        "detail": "NCT01957735 linked (COMPLETED)"
+      },
+      {
+        "type": "drug_added",
+        "drug": "ISM9528",
+        "key": "ism9528",
+        "company": "Insilico Medicine",
+        "detail": "added to the seed list at Phase 1"
+      },
+      {
+        "type": "drug_added",
+        "drug": "ABCL575",
+        "key": "abcl575",
+        "company": "AbCellera",
+        "detail": "added to the seed list at Phase 1"
+      },
+      {
+        "type": "drug_added",
+        "drug": "VENT-03",
+        "key": "vent-03",
+        "company": "Ventus Therapeutics",
+        "detail": "added to the seed list at Phase 2"
+      },
+      {
+        "type": "drug_added",
+        "drug": "RLY-5836",
+        "key": "rly-5836",
+        "company": "Relay Therapeutics",
+        "detail": "added to the seed list at Phase 1"
+      },
+      {
+        "type": "drug_added",
+        "drug": "LP-284",
+        "key": "lp-284",
+        "company": "Lantern Pharma",
+        "detail": "added to the seed list at Phase 1"
+      },
+      {
+        "type": "drug_added",
+        "drug": "EVX-02",
+        "key": "evx-02",
+        "company": "Evaxion Biotech",
+        "detail": "added to the seed list at Phase 1/2"
+      },
+      {
+        "type": "drug_added",
+        "drug": "bavisant",
+        "key": "bavisant",
+        "company": "BenevolentAI",
+        "detail": "added to the seed list at Phase 2"
+      },
+      {
+        "type": "drug_added",
+        "drug": "talabostat",
+        "key": "talabostat",
+        "company": "BioXcel Therapeutics",
+        "detail": "added to the seed list at Phase 2"
+      },
+      {
+        "type": "drug_added",
+        "drug": "BPM31543",
+        "key": "bpm31543",
+        "company": "BPGbio",
+        "detail": "added to the seed list at Phase 1"
+      }
+    ],
+    "warnings": []
+  },
+  {
     "date": "2026-11-23",
     "generated_at_utc": "2026-11-23T18:09:59+00:00",
     "previous_snapshot": "2026-11-19",
